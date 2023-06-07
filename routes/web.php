@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminQuizController;
+use App\Http\Controllers\Admin\AdminSchoolController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('admin')->group(function (){
+    Route::resource('school', AdminSchoolController::class)->except(['create', 'show', 'edit'])->names('admin.school');
+    Route::resource('teacher', AdminTeacherController::class)->names('admin.teacher');
+    Route::resource('student', AdminStudentController::class)->names('admin.student');
+    Route::resource('quiz', AdminQuizController::class)->names('admin.quiz');
 });

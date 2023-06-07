@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('username');
             $table->string('password');
             $table->foreignIdFor(School::class);
+            $table->string('name');
+            $table->enum('gender', ['Laki-laki', 'Perempuan']);
             $table->timestamps();
         });
     }
