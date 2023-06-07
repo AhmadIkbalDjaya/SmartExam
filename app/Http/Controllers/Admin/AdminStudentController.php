@@ -16,8 +16,11 @@ class AdminStudentController extends Controller
      */
     public function index()
     {
+        $students = Student::all();
+        // $students = Student::where('school_id', auth()->teacher()->school_id);
         return view("admin.student.index", [
             "title" => "Murid",
+            "students" => $students,
         ]);
     }
 
