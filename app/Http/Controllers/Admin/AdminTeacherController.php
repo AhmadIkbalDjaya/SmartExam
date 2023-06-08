@@ -19,6 +19,7 @@ class AdminTeacherController extends Controller
     {
         return view("admin.teacher.index", [
             "title" => "Guru Sekolah",
+            "schools" => School::all(),
             "teachers" => Teacher::all(),
         ]);
     }
@@ -47,7 +48,7 @@ class AdminTeacherController extends Controller
             "school_id" => "required|exists:schools,id",
         ]);
 
-        $validated['password'] = Hash::make($validated['password']);
+        // $validated['password'] = Hash::make($validated['password']);
 
         Teacher::create($validated);
         return back()->with("success", "Guru berhasil ditambahkan");
@@ -89,9 +90,9 @@ class AdminTeacherController extends Controller
             "password" => "nullable|min:8",
             "school_id" => "required|exists:schools,id",
         ]);
-        if ($request->password) {
-            $validated["password"] = Hash::make($validated["password"]);
-        }
+        // if ($request->password) {
+        //     $validated["password"] = Hash::make($validated["password"]);
+        // }
         $teacher->update($validated);
         return back()->with("success", "Guru berhasil di perbaharui");
     }
@@ -105,6 +106,6 @@ class AdminTeacherController extends Controller
     public function destroy(Teacher $teacher)
     {
         $teacher->delete();
-        return back()->with("success", "Guru berhasil di hapys");
+        return back()->with("success", "Guru berhasil di hapus");
     }
 }

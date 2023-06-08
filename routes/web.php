@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin')->group(function (){
-    Route::get('', fn()=>view("admin.home.index"))->name('admin.home.index');
+    Route::get('', fn()=>view("admin.home.index", ["title" => "Admin Dashboard"]))->name('admin.home.index');
     Route::resource('school', AdminSchoolController::class)->except(['create', 'show', 'edit'])->names('admin.school');
     Route::resource('teacher', AdminTeacherController::class)->except(['create', 'show', 'edit'])->names('admin.teacher');
     Route::resource('student', AdminStudentController::class)->except(['create', 'show', 'edit'])->names('admin.student');
