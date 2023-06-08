@@ -98,6 +98,11 @@
                                     </span>
                                   </div>
                                 </div>
+                                <select class="form-select mb-3" aria-label="Default select example">
+                                  <option selected>Jenis Kelamin</option>
+                                  <option value="1">Laki-Laki</option>
+                                  <option value="2">Perempuan</option>
+                                </select>
                                 <select class="form-select" aria-label="Default select example">
                                   <option selected>Pilih Sekolah</option>
                                   <option value="1">SMAN 17 Gowa</option>
@@ -107,7 +112,8 @@
                                 </select>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-secondary"
+                                  data-bs-dismiss="modal">Cancel</button>
                                 <button type="submit" class="btn btn-primary">Save</button>
                               </div>
                             </div>
@@ -144,6 +150,11 @@
                                     </span>
                                   </div>
                                 </div>
+                                <select class="form-select mb-3" aria-label="Default select example">
+                                  <option selected>Jenis Kelamin</option>
+                                  <option value="1">Laki-Laki</option>
+                                  <option value="2">Perempuan</option>
+                                </select>
                                 <select class="form-select" aria-label="Default select example">
                                   <option selected>Pilih Sekolah</option>
                                   <option value="1">SMP 1 Gowa</option>
