@@ -1,0 +1,44 @@
+* Admin
+  1. Buat Sekolah
+      Nama Sekolah
+      Kategori Sekolah (SMP/SMA)
+  2. Buat Akun Guru
+      Username & Password 
+      Memilih Sekolah tempat guru ditempatkan
+  3. Buat Akun Murid
+      Username(NIS) & Password
+      Memilih sekolah Murid
+  4. Buat Quiz
+      quiz memiliki waktu mulai dan waktu berakhir
+      quiz memiliki waktuk pengerjaan
+      Nama Quiz
+      Quiz SMP/SMA
+      Kode Quiz 
+      - Pilihan ganda
+        soal pilihan ganda dapat berupa teks atau gambar
+        ada 5 piliahan dan 1 pilihan benar pilihan dapat berupa teks atau gambar
+      - Essay
+        soal dapat berupa teks atau gambar
+        semua jawaban di kirim dalam bentuk pdf
+      "Quiz SMP bisa di CRUD oleh semua GURU SMP"
+      "Quiz SMA bisa di CRUD oleh semua GURU SMA"
+
+* Guru
+  1. Guru SMP (SEKOALAH X)
+      CRUD murid sekolahnya
+      Bisa CRUD semua QUIZ SMP
+      guru berperan dalam memeriksa hasil quiz pilihan ganda siswa di sekolahnya 
+      guru berperan dalam memeriksa hasil quiz Essay siswa di sekolahnya dan memberikna nilai 
+  2. GURU SMA (SEKOLAH Y)
+      CRUD murid sekolahnya
+      Bisa CRUD semua QUIZ SMA
+      guru berperan dalam memeriksa hasil quiz pilihan ganda siswa di sekolahnya 
+      guru berperan dalam memeriksa hasil quiz Essay siswa di sekolahnya dan memberikna nilai 
+* Siswa
+  - Melihat semua quiz yang tersedia
+  - mengikuti quiz yang dipilih dan harus memasukkan kode quiz terlebih dahulu
+  - profile = meliahat semua quiz yang telah diikuti dan melihat score yg diperoleh
+  - setelah mengikuti quiz piliahan ganda skore lansung terlihat
+  - setelah mengikuti quiz Essay jawaban harus diperiksa terlebih dahulu oleh guru 
+
+  

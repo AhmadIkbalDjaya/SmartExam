@@ -137,10 +137,10 @@
                                         <label for="exampleFormControlInput1" class="form-label">Password</label>
                                         <sub class="d-block mb-2">Kosongkan jika tidak ingin mengganti password</sub>
                                         <div class="input-group">
-                                          <input type="password" name="password" value="{{ old('password') }}"
+                                          <input type="password" name="password"
                                             class="form-control
                                           @error('password') is-invalid @enderror"
-                                            id="passwordInput" required>
+                                            id="passwordInput">
                                           <span class="input-group-append">
                                             <span class="input-group-text toggle-password" id="togglePassword"
                                               style="cursor: pointer">

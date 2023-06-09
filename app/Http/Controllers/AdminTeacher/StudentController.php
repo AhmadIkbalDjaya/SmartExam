@@ -5,9 +5,10 @@ namespace App\Http\Controllers\AdminTeacher;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\School;
 use Illuminate\Support\Facades\Hash;
 
-class AdminStudentController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,6 +22,7 @@ class AdminStudentController extends Controller
         return view("admin.student.index", [
             "title" => "Murid",
             "students" => $students,
+            "schools" => School::all(),
         ]);
     }
 
@@ -49,12 +51,10 @@ class AdminStudentController extends Controller
             "name" => "required|string",
             "gender" => "required|in:Laki-laki,Perempuan",
         ]);
-        $validated['password'] = Hash::make($validated['password']);
-        
-        Student::create($validated);
-        $validated['password'] = Hash::make($validated['password']);
-        return back()->with("success", "Siswa berhasil ditambahkan");
+        // $validated['password'] = Hash::make($validated['password']);
 
+        Student::create($validated);
+        return back()->with("success", "Siswa berhasil ditambahkan");
     }
 
     /**
@@ -89,14 +89,16 @@ class AdminStudentController extends Controller
     public function update(Request $request, Student $student)
     {
         $validated = $request->validate([
-            "username" => "required|unique:teachers,username,$student->id",
+            "username" => "required|unique:students,username,$student->id",
             "password" => "nullable|min:8",
             "school_id" => "required|exists:schools,id",
             "name" => "required|string",
             "gender" => "required|in:Laki-laki,Perempuan",
         ]);
         if ($request->password) {
-            $validated["password"] = Hash::make($validated["password"]);
+            // $validated["password"] = Hash::make($validated["password"]);
+        } else {
+            $validated['password'] = $student->password;
         }
         $student->update($validated);
         return back()->with("success", "Siswa berhasil di perbaharui");

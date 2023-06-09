@@ -90,9 +90,11 @@ class AdminTeacherController extends Controller
             "password" => "nullable|min:8",
             "school_id" => "required|exists:schools,id",
         ]);
-        // if ($request->password) {
-        //     $validated["password"] = Hash::make($validated["password"]);
-        // }
+        if ($request->password) {
+            // $validated["password"] = Hash::make($validated["password"]);
+        } else {
+            $validated['password'] = $teacher->password;
+        }
         $teacher->update($validated);
         return back()->with("success", "Guru berhasil di perbaharui");
     }
