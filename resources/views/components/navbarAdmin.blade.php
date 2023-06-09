@@ -116,12 +116,12 @@
               class="hide-menu">Quiz</span></a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link waves-effect waves-dark sidebar-link" href=""
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('admin.recap.index') }}"
             aria-expanded="false"> <i class="me-3 fa fa-book" aria-hidden="true"></i><span
               class="hide-menu">Rekapan</span></a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link waves-effect waves-dark sidebar-link" href=""
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('admin.profile.index') }}"
             aria-expanded="false"> <i class="me-3 fa fa-user" aria-hidden="true"></i><span
               class="hide-menu">Profile</span></a>
         </li>

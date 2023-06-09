@@ -28,7 +28,13 @@ Route::prefix('admin')->group(function (){
     Route::get('teacher', [AdminTeacherController::class, 'index'])->name('admin.teacher.index');
     Route::resource('student', StudentController::class)->except(['create', 'show', 'edit'])->names('admin.student');
     Route::resource('quiz', AdminQuizController::class)->except(['create', 'show', 'edit'])->names('admin.quiz');
-    Route::get('quiz/question', fn()=>view("admin.question.index"))->name('admin.question.index');
+    Route::get('quiz/question', fn()=>view("admin.question.index", ["title" => "Pertanyaan"]))->name('admin.question.index');
     Route::get('quiz/essay', fn()=>view("admin.question.essay"))->name('admin.question.essay');
+
+    Route::get('/admin/recap', fn()=> view('admin.recap.index', ["title" => "recap"]))->name('admin.recap.index');
+    Route::get('/admin/profile', fn()=> view('admin.profile.index', ["title" => "profil"]))->name('admin.profile.index');
+    Route::get('/admin/quizRecap', fn()=> view('admin.quizRecap.index', ["title" => "quizRecap"]))->name('admin.quizRecap.index');
+    Route::get('/admin/print', fn()=> view('admin.print.index', ["title" => "print"]))->name('admin.print.index');
+
     
 });
