@@ -3,6 +3,9 @@
 @push('style')
   <link rel="stylesheet" href="{{ asset('/css/table.css') }}">
 @endpush
+@push('style')
+  <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
+@endpush
 
 @section('body')
   @include('components.navbarAdmin')
@@ -11,260 +14,199 @@
     <div class="page-breadcrumb">
       <!-- alerts -->
       <div id="alerts"></div>
-      <!-- Quizz -->
-      <section id="header" style="height: 75vh;">
-        <div class="container-fluid card py-4 h-100">
+      <!-- Question -->
+      <section id="header">
+        <div class="container-fluid card">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="container-fluid">
-                <div class="row p-3">
-                  <div class="col-md-12">
-                    <h3>Quizz</h3>
-                    <p>Menambah, Mengedit, atau Menghapus Quizz</p>
-                  </div>
-                  <div class="col-md-4">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah
-                      Quizz</button>
+                <div class="row p-5">
+                  <div class="col-md-12 text-center">
+                    <h3>Ujian CBT</h3>
+                    <p>Pilihan Ganda</p>
+                    <p></p>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12 p-4">
-                    <div class="table-responsive">
-                      <table class="table table-bordered text-center">
-                        <thead>
-                          <tr>
-                            <th class="col-md-4">Nama</th>
-                            <th class="col-md-4">Kode Quizz</th>
-                            <th class="col-md-4">Paket Soal</th>
-                            <th class="col-md-4">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>
-                              <a href="#"><span class="badge text-bg-info" id="liveAlertBtn">Informasi</span></a>
-                              <a href="#"><span class="badge text-bg-warning px-4"
-                                  id="liveAlertBtn2">Edit</span></a>
-                              <a href="#"><span class="badge text-bg-danger" id="liveAlertBtn3">Delete</span></a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Ujian CBT SMA</td>
-                            <td>67543</td>
-                            <td>
-                              <button style=" border: none;background: none; padding: 0"><span
-                                  class="badge text-bg-primary">Tambah Soal</span></button>
-                            </td>
-                            <td>
-                              <button style=" border: none;background: none; padding: 0"><span class="badge text-bg-info"
-                                  data-bs-toggle="modal" data-bs-target="#informasi">Informasi</span></button>
-                              <button style=" border: none;background: none; padding: 0"><span
-                                  class="badge text-bg-warning px-4" data-bs-toggle="modal"
-                                  data-bs-target="#edit">Edit</span></button>
-                              <a href="#"><span class="badge text-bg-danger" data-bs-toggle="modal"
-                                  data-bs-target="#hapus">Delete</span></a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <!-- Modal Tambah Quizz-->
-                      <form action="">
-                        <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="exampleModalLabel"
-                          aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Paket Soal</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                  aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                <div class="mb-3">
-                                  <label for="exampleFormControlInput1" class="form-label">Nama Quizz</label>
-                                  <input type="text" class="form-control" id="exampleFormControlInput1" required />
-                                </div>
-                                <div class="mb-3">
-                                  <div class="container-fluid px-0">
-                                    <div class="row">
-                                      <div class="col-6">
-                                        <label for="exampleFormControlInput1" class="form-label">Waktu Mulai</label>
-                                        <input type="time" class="form-control" id="exampleFormControlInput1"
-                                          required />
-                                      </div>
-                                      <div class="col-6">
-                                        <label for="exampleFormControlInput1" class="form-label">Waktu Berakhir</label>
-                                        <input type="time" class="form-control" id="exampleFormControlInput1"
-                                          required />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="mb-3">
-                                  <div class="container-fluid px-0">
-                                    <div class="row">
-                                      <div class="col-6">
-                                        <label for="exampleFormControlInput1" class="form-label">Waktu Pengerjaan</label>
-                                        <input type="time" class="form-control" id="exampleFormControlInput1"
-                                          required />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="mb-3">
-                                  <label for="exampleFormControlInput1" class="form-label">Kode Quizz</label>
-                                  <input type="text" class="form-control" id="exampleFormControlInput1" required />
-                                </div>
-                                <select class="form-select" aria-label="Default select example">
-                                  <option selected>Pilih Sekolah</option>
-                                  <option value="1">SMP</option>
-                                  <option value="1">SMA</option>
-                                </select>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                  data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
-                              </div>
-                            </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="Soal">
+        <div class="container-fluid card py-4 px-0">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="container-fluid ">
+                <div class="row p-3 card-header shadow-sm">
+                  <div class="col-md-12">
+                    <h4 class="py-3">Daftar Soal Ujian</h4>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah
+                      Soal</button>
+                  </div>
+                </div>
+                <div class="row card-body shadow-sm">
+                  <div class="col-10">
+                    <p>1. Apa itu item?</p>
+                    <ul class="lowercase">
+                      <li>Item 1</li>
+                      <li>Item 2</li>
+                      <li>Item 3</li>
+                      <li>Item 4</li>
+                      <li>Item 5</li>
+                    </ul>
+                  </div>
+                  <div class="col-2">
+                    <div class="row h-100 align-items-center">
+                      <div class="col-md-12">
+                        <button type="button" class="btn btn-primary my-1" data-bs-toggle="modal"
+                          data-bs-target="#edit"><i class="bi bi-pen"></i></button>
+                        <button type="button" class="btn btn-primary my-1" data-bs-toggle="modal"
+                          data-bs-target="#hapus"><i class="bi bi-trash-fill"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row card-body shadow-sm">
+                  <div class="col-10">
+                    <p>1. Apa itu item?</p>
+                    <ul class="lowercase">
+                      <li>Item 1</li>
+                      <li>Item 2</li>
+                      <li>Item 3</li>
+                      <li>Item 4</li>
+                      <li>Item 5</li>
+                    </ul>
+                  </div>
+                  <div class="col-2">
+                    <div class="row h-100 align-items-center">
+                      <div class="col-md-12">
+                        <button type="button" class="btn btn-primary my-1" data-bs-toggle="modal"
+                          data-bs-target="#edit"><i class="bi bi-pen"></i></button>
+                        <button type="button" class="btn btn-primary my-1" data-bs-toggle="modal"
+                          data-bs-target="#hapus"><i class="bi bi-trash-fill"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal Buat Soal-->
+          <form action="">
+            <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Buat Soal Ujian</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <label for="editor1">Pertanyaan</label>
+                      <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
+                      <script>
+                        CKEDITOR.replace('editor1');
+                      </script>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <label for="editor2">Jawaban A</label>
+                      <textarea name="editor2" id="editor2" rows="10" cols="80"></textarea>
+                      <script>
+                        CKEDITOR.replace('editor2');
+                      </script>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <label for="editor3">Jawaban B</label>
+                      <textarea name="editor3" id="editor3" rows="10" cols="80"></textarea>
+                      <script>
+                        CKEDITOR.replace('editor3');
+                      </script>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <label for="editor4">Jawaban C</label>
+                      <textarea name="editor4" id="editor4" rows="10" cols="80"></textarea>
+                      <script>
+                        CKEDITOR.replace('editor4');
+                      </script>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <label for="editor5">Jawaban D</label>
+                      <textarea name="editor5" id="editor5" rows="10" cols="80"></textarea>
+                      <script>
+                        CKEDITOR.replace('editor5');
+                      </script>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <label for="editor6">Jawaban E</label>
+                      <textarea name="editor6" id="editor6" rows="10" cols="80"></textarea>
+                      <script>
+                        CKEDITOR.replace('editor6');
+                      </script>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <div class="container px-0">
+                      <div class="row border-bottom py-3">
+                        <p>Kunci Jawaban</p>
+                        <div class="col-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                              id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                              A
+                            </label>
                           </div>
                         </div>
-                      </form>
-                      <!-- Modal Edit Quizz-->
-                      <form action="">
-                        <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel"
-                          aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Paket Soal</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                  aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                <div class="mb-3">
-                                  <label for="exampleFormControlInput1" class="form-label">Nama Quizz</label>
-                                  <input type="text" class="form-control" id="exampleFormControlInput1" required />
-                                </div>
-                                <div class="mb-3">
-                                  <div class="container-fluid px-0">
-                                    <div class="row">
-                                      <div class="col-6">
-                                        <label for="exampleFormControlInput1" class="form-label">Waktu Mulai</label>
-                                        <input type="time" class="form-control" id="exampleFormControlInput1"
-                                          required />
-                                      </div>
-                                      <div class="col-6">
-                                        <label for="exampleFormControlInput1" class="form-label">Waktu Berakhir</label>
-                                        <input type="time" class="form-control" id="exampleFormControlInput1"
-                                          required />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="mb-3">
-                                  <div class="container-fluid px-0">
-                                    <div class="row">
-                                      <div class="col-6">
-                                        <label for="exampleFormControlInput1" class="form-label">Waktu
-                                          Pengerjaan</label>
-                                        <input type="time" class="form-control" id="exampleFormControlInput1"
-                                          required />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="mb-3">
-                                  <label for="exampleFormControlInput1" class="form-label">Kode Quizz</label>
-                                  <input type="text" class="form-control" id="exampleFormControlInput1" required />
-                                </div>
-                                <select class="form-select" aria-label="Default select example">
-                                  <option selected>Pilih Sekolah</option>
-                                  <option value="1">SMP</option>
-                                  <option value="1">SMA</option>
-                                </select>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                  data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
-                              </div>
-                            </div>
+                        <div class="col-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                              id="flexRadioDefault2">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                              B
+                            </label>
                           </div>
                         </div>
-                      </form>
-
-                      {{-- Informasi --}}
-                      <div class="modal fade" id="informasi" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Informasi</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <div class="container">
-                                <div class="row">
-                                  <div class="col-md-12">
-                                    <div>
-                                      <span> Nama : </span>
-                                      <span> Ujian CBT </span>
-                                    </div>
-                                    <br>
-                                    <div>
-                                      <span> Waktu Mulai : </span>
-                                      <span> 08.00 </span>
-                                    </div>
-                                    <br>
-                                    <div>
-                                      <span> Waktu Berakhir : </span>
-                                      <span> 10.00 </span>
-                                    </div>
-                                    <br>
-                                    <div>
-                                      <span> Waktu Pengerjaan : </span>
-                                      <span> 3 jam </span>
-                                    </div>
-                                    <br>
-                                    <div>
-                                      <span> Kode Quizz : </span>
-                                      <span> 6487 </span>
-                                    </div>
-                                    <br>
-                                    <div>
-                                      <span> Sekolah : </span>
-                                      <span> SMA </span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
+                        <div class="col-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                              id="flexRadioDefault3">
+                            <label class="form-check-label" for="flexRadioDefault3">
+                              C
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                              id="flexRadioDefault4">
+                            <label class="form-check-label" for="flexRadioDefault4">
+                              D
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                              id="flexRadioDefault5">
+                            <label class="form-check-label" for="flexRadioDefault5">
+                              E
+                            </label>
                           </div>
                         </div>
                       </div>
-                      <!-- Modal Hapus-->
-                      <div class="modal fade" id="hapus" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus?</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">Apakah anda yakin ingin menghapusnya?</div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-                              <button type="button" class="btn btn-primary">Ya</button>
-                            </div>
-                          </div>
+                      <div class="row my-3">
+                        <div class="col-md-12 text-end">
+                          <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                       </div>
                     </div>
@@ -272,12 +214,145 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4 gambar1">
-              <div class="container h-100">
-                <div class="row align-items-center h-100">
-                  <div class="col-md-12">
-                    <img src="{{ asset('/images/student.svg') }}" alt="img" class="img-fluid" />
+          </form>
+          <!-- Modal Edit Soal-->
+          <form action="">
+            <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Soal Ujian</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
+                  <div class="modal-body">
+                    <div>
+                      <label for="editor7">Pertanyaan</label>
+                      <textarea name="editor7" id="editor7" rows="10" cols="80"></textarea>
+                      <script>
+                        CKEDITOR.replace('editor7');
+                      </script>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <label for="editor8">Jawaban A</label>
+                      <textarea name="editor8" id="editor8" rows="10" cols="80"></textarea>
+                      <script>
+                        CKEDITOR.replace('editor8');
+                      </script>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <label for="editor9">Jawaban B</label>
+                      <textarea name="editor9" id="editor9" rows="10" cols="80"></textarea>
+                      <script>
+                        CKEDITOR.replace('editor9');
+                      </script>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <label for="editor10">Jawaban C</label>
+                      <textarea name="editor10" id="editor10" rows="10" cols="80"></textarea>
+                      <script>
+                        CKEDITOR.replace('editor10');
+                      </script>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <label for="editor11">Jawaban D</label>
+                      <textarea name="editor11" id="editor11" rows="10" cols="80"></textarea>
+                      <script>
+                        CKEDITOR.replace('editor11');
+                      </script>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <label for="editor12">Jawaban E</label>
+                      <textarea name="editor12" id="editor12" rows="10" cols="80"></textarea>
+                      <script>
+                        CKEDITOR.replace('editor12');
+                      </script>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <div class="container px-0">
+                      <div class="row border-bottom py-3">
+                        <p>Kunci Jawaban</p>
+                        <div class="col-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                              id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                              A
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                              id="flexRadioDefault2">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                              B
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                              id="flexRadioDefault3">
+                            <label class="form-check-label" for="flexRadioDefault3">
+                              C
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                              id="flexRadioDefault4">
+                            <label class="form-check-label" for="flexRadioDefault4">
+                              D
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                              id="flexRadioDefault5">
+                            <label class="form-check-label" for="flexRadioDefault5">
+                              E
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row my-3">
+                        <div class="col-md-12 text-end">
+                          <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <!-- Modal Hapus-->
+          <div class="modal fade" id="hapus" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus?</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">Apakah anda yakin ingin menghapusnya?</div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                  <button type="button" class="btn btn-primary">Ya</button>
                 </div>
               </div>
             </div>

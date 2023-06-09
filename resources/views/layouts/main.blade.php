@@ -11,6 +11,7 @@
   {{-- CSS --}}
   <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
   @stack('style')
+  @stack('tex-editor')
 </head>
 
 <body>
