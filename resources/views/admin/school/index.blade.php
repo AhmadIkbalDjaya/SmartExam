@@ -9,7 +9,8 @@
   @include('components.navbarAdmin')
   @include('components.spasi')
   <div class="page-wrapper">
-    @livewire('school.index')
+    {{-- @livewire('school.index') --}}
+    <livewire:school.index />
     {{-- <div class="page-breadcrumb">
       <!-- alerts -->
       @include('components.alerts')
