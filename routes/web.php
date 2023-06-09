@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminQuizController;
 use App\Http\Controllers\Admin\AdminSchoolController;
 use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminTeacherController;
+use App\Http\Controllers\AdminTeacher\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +23,10 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin')->group(function (){
-    Route::get('', fn()=>view("admin.home.index"))->name('admin.home.index');
+    Route::get('', fn()=>view("admin.home.index", ["title" => "Admin Dashboard"]))->name('admin.home.index');
     Route::resource('school', AdminSchoolController::class)->except(['create', 'show', 'edit'])->names('admin.school');
     Route::resource('teacher', AdminTeacherController::class)->except(['create', 'show', 'edit'])->names('admin.teacher');
-    Route::resource('student', AdminStudentController::class)->except(['create', 'show', 'edit'])->names('admin.student');
+    Route::resource('student', StudentController::class)->except(['create', 'show', 'edit'])->names('admin.student');
     Route::resource('quiz', AdminQuizController::class)->except(['create', 'show', 'edit'])->names('admin.quiz');
     Route::get('quiz/question', fn()=>view("admin.question.index"))->name('admin.question.index');
     Route::get('quiz/essay', fn()=>view("admin.question.essay"))->name('admin.question.essay');

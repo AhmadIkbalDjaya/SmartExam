@@ -10,7 +10,8 @@
   <div class="page-wrapper">
     <div class="page-breadcrumb">
       <!-- alerts -->
-      <div id="alerts"></div>
+      {{-- <div id="alerts"></div> --}}
+      @include('components.alerts')
       <!-- Siswa -->
       <section id="headerProduk" style="min-height: 75vh;">
         <div class="container-fluid card py-4 h-100">
@@ -23,8 +24,9 @@
                     <p>Menambah, Mengedit, atau Menghapus Siswa</p>
                   </div>
                   <div class="col-md-4">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah
-                      Siswa</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+                      Tambah Siswa
+                    </button>
                   </div>
                 </div>
                 <div class="row">
@@ -39,55 +41,251 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>
-                              <a href="#"><span class="badge text-bg-info" id="liveAlertBtn">Informasi</span></a>
-                              <a href="#"><span class="badge text-bg-warning px-4"
-                                  id="liveAlertBtn2">Edit</span></a>
-                              <a href="#"><span class="badge text-bg-danger" id="liveAlertBtn3">Delete</span></a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>60200676</td>
-                            <td>Dilla</td>
-                            <td>
-                              <button style=" border: none;background: none; padding: 0"><span class="badge text-bg-info"
-                                  data-bs-toggle="modal" data-bs-target="#informasi">Informasi</span></button>
-                              <button style=" border: none;background: none; padding: 0"><span
-                                  class="badge text-bg-warning px-4" data-bs-toggle="modal"
-                                  data-bs-target="#edit">Edit</span></button>
-                              <a href="#"><span class="badge text-bg-danger" data-bs-toggle="modal"
-                                  data-bs-target="#hapus">Delete</span></a>
-                            </td>
-                          </tr>
+                          @foreach ($students as $student)
+                            <tr>
+                              <td>{{ $student->username }}</td>
+                              <td>{{ $student->name }}</td>
+                              <td>
+                                <button style=" border: none;background: none; padding: 0">
+                                  <span class="badge text-bg-info" data-bs-toggle="modal"
+                                    data-bs-target="#showModal{{ $student->id }}">
+                                    Informasi
+                                  </span>
+                                </button>
+                                <button style=" border: none;background: none; padding: 0">
+                                  <span class="badge text-bg-warning px-4" data-bs-toggle="modal"
+                                    data-bs-target="#editModal{{ $student->id }}">
+                                    Edit
+                                  </span>
+                                </button>
+                                <a href="#">
+                                  <span class="badge text-bg-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal{{ $student->id }}">
+                                    Delete
+                                  </span>
+                                </a>
+                              </td>
+                            </tr>
+
+                            {{-- Show Modal --}}
+                            <div class="modal fade" id="showModal{{ $student->id }}" tabindex="-1"
+                              aria-labelledby="showModal{{ $student->id }}Label" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="showModal{{ $student->id }}Label">Informasi</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="container">
+                                      <div class="row">
+                                        <div class="col-md-12">
+                                          <div>
+                                            <span> Nama : </span>
+                                            <span> {{ $student->name }} </span>
+                                          </div>
+                                          <br>
+                                          <div>
+                                            <span> Nisn : </span>
+                                            <span> {{ $student->username }} </span>
+                                          </div>
+                                          <br>
+                                          <div>
+                                            <span> Password : </span>
+                                            <span> {{ $student->password }} </span>
+                                          </div>
+                                          <br>
+                                          <div>
+                                            <span> Sekolah : </span>
+                                            <span> {{ $student->school->school_name }} </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                      data-bs-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            {{-- End Show Modal --}}
+
+                            <!-- Student Edit Modal -->
+                            <form action="{{ route('admin.student.update', ['student' => $student->id]) }}"
+                              method="POST">
+                              @method('patch')
+                              @csrf
+                              <div class="modal fade" id="editModal{{ $student->id }}" tabindex="-1"
+                                aria-labelledby="editModal{{ $student->id }}Label" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="editModal{{ $student->id }}Label">Edit Siswa</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Nama</label>
+                                        <input type="text" name="name" value="{{ old('name', $student->name) }}"
+                                          class="form-control @error('name') is-invalid @enderror"
+                                          id="exampleFormControlInput1" required />
+                                        @error('name')
+                                          <div class="invalid-feedback">
+                                            {{ $message }}
+                                          </div>
+                                        @enderror
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Nisn</label>
+                                        <input type="text" name="username"
+                                          value="{{ old('username', $student->username) }}"
+                                          class="form-control @error('username') is-invalid @enderror"
+                                          id="exampleFormControlInput1" required />
+                                        @error('username')
+                                          <div class="invalid-feedback">
+                                            {{ $message }}
+                                          </div>
+                                        @enderror
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Password</label>
+                                        <sub class="d-block mb-2">Kosongkan jika tidak ingin mengganti password</sub>
+                                        <div class="input-group">
+                                          <input type="password" name="password"
+                                            class="form-control @error('password') is-invalid @enderror"
+                                            value="{{ old('passsword') }}" id="passwordInput">
+                                          <span class="input-group-append">
+                                            <span class="input-group-text toggle-password" id="togglePassword"
+                                              style="cursor: pointer">
+                                              <i class="bi bi-eye-fill" alt="Show Password" id="eyeClosedIcon"></i>
+                                              <i class="bi bi-eye-slash" alt="Hide Password" id="eyeOpenIcon"
+                                                style="display: none;"></i>
+                                            </span>
+                                          </span>
+                                          @error('password')
+                                            <div class="invalid-feedback">
+                                              {{ $message }}
+                                            </div>
+                                          @enderror
+                                        </div>
+                                      </div>
+                                      <select name="gender" class="form-select @error('gender') is-invalid @enderror"
+                                        aria-label="Default select example">
+                                        <option hidden>Jenis Kelamin</option>
+                                        <option value="Laki-laki"
+                                          {{ old('gender', $student->gender) == 'Laki-laki' ? 'selected' : '' }}>
+                                          Laki-Laki</option>
+                                        <option value="Perempuan"
+                                          {{ old('gender', $student->gender) == 'Perempuan' ? 'selected' : '' }}>
+                                          Perempuan</option>
+                                      </select>
+                                      @error('gender')
+                                        <div class="invalid-feedback">
+                                          {{ $message }}
+                                        </div>
+                                      @enderror
+                                      <select name="school_id"
+                                        class="form-select mt-2 @error('school_id') is-invalid @enderror"
+                                        aria-label="Default select example">
+                                        <option hidden>Pilih Sekolah</option>
+                                        @foreach ($schools as $school)
+                                          <option value="{{ $school->id }}"
+                                            {{ old('school_id', $student->school_id) == $school->id ? 'selected' : '' }}>
+                                            {{ $school->school_name }}
+                                          </option>
+                                        @endforeach
+                                      </select>
+                                      @error('school_id')
+                                        <div class="invalid-feedback">
+                                          {{ $message }}
+                                        </div>
+                                      @enderror
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cancel</button>
+                                      <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                            <!-- End Student Edit Modal -->
+
+                            <!-- Delete Modal -->
+                            <div class="modal fade" id="deleteModal{{ $student->id }}" tabindex="-1"
+                              aria-labelledby="deleteModal{{ $student->id }}Label" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="deleteModal{{ $student->id }}Label">Hapus?</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">Apakah anda yakin ingin menghapus {{ $student->name }}?</div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                      data-bs-dismiss="modal">Tidak</button>
+                                    <form action="{{ route('admin.student.destroy', ['student' => $student->id]) }}"
+                                      method="post">
+                                      @method('delete')
+                                      @csrf
+                                      <button type="submit" class="btn btn-primary">Ya</button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- End Delete Modal -->
+                          @endforeach
                         </tbody>
                       </table>
-                      <!-- Modal Tambah Siswa-->
-                      <form action="">
-                        <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="exampleModalLabel"
+
+                      <!-- Student Create Modal -->
+                      <form action="{{ route('admin.student.store') }}" method="POST">
+                        @csrf
+                        <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel"
                           aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Siswa</h1>
+                                <h1 class="modal-title fs-5" id="createModalLabel">Tambah Siswa</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                   aria-label="Close"></button>
                               </div>
                               <div class="modal-body">
                                 <div class="mb-3">
                                   <label for="exampleFormControlInput1" class="form-label">Nama</label>
-                                  <input type="text" class="form-control" id="exampleFormControlInput1" required />
+                                  <input type="text" name="name" value="{{ old('name') }}"
+                                    class="form-control @error('name') is-invalid @enderror"
+                                    id="exampleFormControlInput1" required />
+                                  @error('name')
+                                    <div class="invalid-feedback">
+                                      {{ $message }}
+                                    </div>
+                                  @enderror
                                 </div>
                                 <div class="mb-3">
                                   <label for="exampleFormControlInput1" class="form-label">Nisn</label>
-                                  <input type="text" class="form-control" id="exampleFormControlInput1" required />
+                                  <input type="text" name="username" value="{{ old('username') }}"
+                                    class="form-control @error('username') is-invalid @enderror"
+                                    id="exampleFormControlInput1" required />
+                                  @error('username')
+                                    <div class="invalid-feedback">
+                                      {{ $message }}
+                                    </div>
+                                  @enderror
                                 </div>
                                 <div class="mb-3">
                                   <label for="exampleFormControlInput1" class="form-label">Password</label>
                                   <div class="input-group">
-                                    <input type="password" class="form-control" id="passwordInput" required>
+                                    <input type="password" name="password" value="{{ old('password') }}"
+                                      class="form-control @error('password') is-invalid @enderror" id="passwordInput"
+                                      required>
                                     <span class="input-group-append">
                                       <span class="input-group-text toggle-password" id="togglePassword"
                                         style="cursor: pointer">
@@ -96,20 +294,41 @@
                                           style="display: none;"></i>
                                       </span>
                                     </span>
+                                    @error('password')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                    @enderror
                                   </div>
                                 </div>
-                                <select class="form-select mb-3" aria-label="Default select example">
-                                  <option selected>Jenis Kelamin</option>
-                                  <option value="1">Laki-Laki</option>
-                                  <option value="2">Perempuan</option>
+                                <select name="gender" class="form-select @error('gender') is-invalid @enderror"
+                                  aria-label="Default select example">
+                                  <option hidden>Jenis Kelamin</option>
+                                  <option value="Laki-laki" {{ old('gender') == 'Laki-laki' ? 'selected' : '' }}>
+                                    Laki-Laki</option>
+                                  <option value="Perempuan" {{ old('gender') == 'Perempuan' ? 'selected' : '' }}>
+                                    Perempuan</option>
                                 </select>
-                                <select class="form-select" aria-label="Default select example">
-                                  <option selected>Pilih Sekolah</option>
-                                  <option value="1">SMAN 17 Gowa</option>
-                                  <option value="1">SMAN 1 Gowa</option>
-                                  <option value="2">SMP 1 Gowa</option>
-                                  <option value="2">SMP 2 Gowa</option>
+                                @error('gender')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                @enderror
+                                <select name="school_id"
+                                  class="form-select mt-2 @error('school_id') is-invalid @enderror"
+                                  aria-label="Default select example">
+                                  <option hidden>Pilih Sekolah</option>
+                                  @foreach ($schools as $school)
+                                    <option value="{{ $school->id }}"
+                                      {{ old('school_id') == $school->id ? 'selected' : '' }}>{{ $school->school_name }}
+                                    </option>
+                                  @endforeach
                                 </select>
+                                @error('school_id')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                @enderror
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
@@ -120,119 +339,8 @@
                           </div>
                         </div>
                       </form>
-                      <!-- Modal Edit Siswa-->
-                      <form action="">
-                        <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel"
-                          aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Siswa</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                  aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                <div class="mb-3">
-                                  <label for="exampleFormControlInput1" class="form-label">Username</label>
-                                  <input type="text" class="form-control" id="exampleFormControlInput1" required />
-                                </div>
-                                <div class="mb-3">
-                                  <label for="exampleFormControlInput1" class="form-label">Password</label>
-                                  <div class="input-group">
-                                    <input type="password" class="form-control" id="passwordInput2" required>
-                                    <span class="input-group-append">
-                                      <span class="input-group-text toggle-password" id="togglePassword2"
-                                        style="cursor: pointer">
-                                        <i class="bi bi-eye-fill" alt="Show Password" id="eyeClosedIcon2"></i>
-                                        <i class="bi bi-eye-slash" alt="Hide Password" id="eyeOpenIcon2"
-                                          style="display: none;"></i>
-                                      </span>
-                                    </span>
-                                  </div>
-                                </div>
-                                <select class="form-select mb-3" aria-label="Default select example">
-                                  <option selected>Jenis Kelamin</option>
-                                  <option value="1">Laki-Laki</option>
-                                  <option value="2">Perempuan</option>
-                                </select>
-                                <select class="form-select" aria-label="Default select example">
-                                  <option selected>Pilih Sekolah</option>
-                                  <option value="1">SMP 1 Gowa</option>
-                                  <option value="2">SMP 2 Gowa</option>
-                                  <option value="3">SMA 1 gowa</option>
-                                  <option value="4">SMA 2 gowa</option>
-                                </select>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                  data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                      {{-- Informasi --}}
-                      <div class="modal fade" id="informasi" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Informasi</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <div class="container">
-                                <div class="row">
-                                  <div class="col-md-12">
-                                    <div>
-                                      <span> Nama : </span>
-                                      <span> Dilla </span>
-                                    </div>
-                                    <br>
-                                    <div>
-                                      <span> Nisn : </span>
-                                      <span> 863782353 </span>
-                                    </div>
-                                    <br>
-                                    <div>
-                                      <span> Password : </span>
-                                      <span> dilla123 </span>
-                                    </div>
-                                    <br>
-                                    <div>
-                                      <span> Sekolah : </span>
-                                      <span> SMA 1 Gowa </span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Modal Hapus-->
-                      <div class="modal fade" id="hapus" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus?</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">Apakah anda yakin ingin menghapusnya?</div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-                              <button type="button" class="btn btn-primary">Ya</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      {{-- End Student Create Modal --}}
+
                     </div>
                   </div>
                 </div>
