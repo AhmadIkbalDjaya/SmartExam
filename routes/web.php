@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function (){
     Route::get('', fn()=>view("admin.home.index", ["title" => "Admin Dashboard"]))->name('admin.home.index');
-    Route::resource('school', AdminSchoolController::class)->except(['create', 'show', 'edit'])->names('admin.school');
+    Route::get('school', AdminSchoolController::class)->name('admin.school');
     Route::resource('teacher', AdminTeacherController::class)->except(['create', 'show', 'edit'])->names('admin.teacher');
     Route::resource('student', StudentController::class)->except(['create', 'show', 'edit'])->names('admin.student');
     Route::resource('quiz', AdminQuizController::class)->except(['create', 'show', 'edit'])->names('admin.quiz');
