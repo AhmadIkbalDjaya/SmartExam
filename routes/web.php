@@ -28,5 +28,6 @@ Route::prefix('admin')->group(function (){
     Route::resource('student', AdminStudentController::class)->except(['create', 'show', 'edit'])->names('admin.student');
     Route::resource('quiz', AdminQuizController::class)->except(['create', 'show', 'edit'])->names('admin.quiz');
     Route::get('quiz/question', fn()=>view("admin.question.index"))->name('admin.question.index');
+    Route::get('quiz/essay', fn()=>view("admin.question.essay"))->name('admin.question.essay');
     
 });

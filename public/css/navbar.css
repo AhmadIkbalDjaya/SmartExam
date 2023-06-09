@@ -11239,6 +11239,12 @@ select.form-select.form-control-line {
     padding: 30px;
     padding-bottom: 20px;
 }
+@media(max-width:768px){
+    .page-breadcrumb {
+        padding: 0px;
+        padding-bottom: 20px;
+    }
+}
 .page-breadcrumb .page-title {
     color: #009efb;
     padding-bottom: 20px;

@@ -1,0 +1,4 @@
+/* list */
+ul.lowercase li {
+    list-style-type: lower-alpha;
+}

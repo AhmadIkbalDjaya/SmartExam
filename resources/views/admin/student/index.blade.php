@@ -12,7 +12,7 @@
       <!-- alerts -->
       <div id="alerts"></div>
       <!-- Siswa -->
-      <section id="headerProduk" style="height: 75vh;">
+      <section id="headerProduk" style="min-height: 75vh;">
         <div class="container-fluid card py-4 h-100">
           <div class="row">
             <div class="col-md-8">
