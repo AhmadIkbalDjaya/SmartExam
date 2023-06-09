@@ -8,20 +8,6 @@ use Livewire\Component;
 class Index extends Component
 {
     public $school_id, $school_name, $school_category;
-    protected $listeners = ["schoolStore" => "render"];
-
-    function resetField()
-    {
-        $this->school_name = '';
-        $this->school_category = '';
-        $this->school_id = '';
-    }
-
-    function setField(School $school) {
-        $this->school_id = $school->id;
-        $this->school_name = $school->school_name;
-        $this->school_category = $school->school_category;
-    }
 
     public function render()
     {
@@ -76,10 +62,26 @@ class Index extends Component
         // $this->dispatchBrowserEvent('show-delete-modal');
     }
 
-    function destroy(School $school) {
+    function destroy(School $school)
+    {
         $school->delete();
         session()->flash("success", "Sekolah berhasil dihapus");
         $this->resetField();
         $this->dispatchBrowserEvent('close-modal');
+    }
+
+    function resetField()
+    {
+        $this->school_id = '';
+        $this->school_name = '';
+        $this->school_category = '';
+        $this->school_id = '';
+    }
+
+    function setField(School $school)
+    {
+        $this->school_id = $school->id;
+        $this->school_name = $school->school_name;
+        $this->school_category = $school->school_category;
     }
 }
