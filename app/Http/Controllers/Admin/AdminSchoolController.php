@@ -17,7 +17,6 @@ class AdminSchoolController extends Controller
     {
         return view("admin.school.index", [
             "title" => "Sekolah",
-            "schools" => School::all(),
         ]);
     }
 }
