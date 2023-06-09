@@ -2,3 +2,11 @@
 ul.lowercase li {
     list-style-type: lower-alpha;
 }
+
+
+/* Print */
+@media print {
+    .print-button {
+      display: none;
+    }
+  }
