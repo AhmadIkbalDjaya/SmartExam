@@ -5,7 +5,7 @@
 @endpush
 
 @section('body')
-  @include('components.navbarAdmin')
+  @include('components.navbarTeacher')
   @include('components.spasi')
   <div class="page-wrapper">
     <div class="page-breadcrumb">
@@ -19,7 +19,7 @@
               <div class="container-fluid">
                 <div class="row p-3">
                   <div class="col-md-12 text-center">
-                    <h3 class="fs-2">Profile Admin</h3>
+                    <h3 class="fs-2">Profile Guru</h3>
                   </div>
                 </div>
                 <div class="row text-center">
