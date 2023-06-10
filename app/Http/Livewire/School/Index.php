@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\School;
 
 use App\Models\School;
+use App\Models\Student;
+use App\Models\Teacher;
 use Livewire\Component;
 
 class Index extends Component
@@ -40,7 +42,6 @@ class Index extends Component
     function edit(School $school)
     {
         $this->setField($school);
-        // $this->dispatchBrowserEvent('show-edit-modal');
     }
 
     function update(School $school)
@@ -56,18 +57,21 @@ class Index extends Component
         $this->dispatchBrowserEvent('close-modal');
     }
 
-    function delete(School $school)
-    {
-        $this->setField($school);
-        // $this->dispatchBrowserEvent('show-delete-modal');
-    }
-
     function destroy(School $school)
     {
-        $school->delete();
-        session()->flash("success", "Sekolah berhasil dihapus");
-        $this->resetField();
-        $this->dispatchBrowserEvent('close-modal');
+        $teacherUse = Teacher::where('school_id', $school->id)->count();
+        $studentUse = Student::where('school_id', $school->id)->count();
+        if ($teacherUse > 0 || $studentUse >0) {
+            session()->flash("failed", "$school->school_name tidak dapat dihapus karena digunakan di $teacherUse Guru dan $studentUse Siswa");
+            $this->resetField();
+            $this->dispatchBrowserEvent('close-modal');
+        } else {
+            $school->delete();
+            session()->flash("success", "Sekolah berhasil dihapus");
+            $this->resetField();
+            $this->dispatchBrowserEvent('close-modal');
+        }
+
     }
 
     function resetField()
@@ -75,7 +79,6 @@ class Index extends Component
         $this->school_id = '';
         $this->school_name = '';
         $this->school_category = '';
-        $this->school_id = '';
     }
 
     function setField(School $school)
