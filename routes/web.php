@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminQuizController;
 use App\Http\Controllers\Admin\AdminSchoolController;
+use App\Http\Controllers\AdminTeacher\QuizController;
 use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminTeacherController;
 use App\Http\Controllers\AdminTeacher\StudentController;
@@ -27,7 +28,7 @@ Route::prefix('admin')->group(function (){
     Route::get('school', [AdminSchoolController::class, 'index'])->name('admin.school.index');
     Route::get('teacher', [AdminTeacherController::class, 'index'])->name('admin.teacher.index');
     Route::get('student', [StudentController::class, 'index'])->name('admin.student.index');
-    Route::resource('quiz', AdminQuizController::class)->except(['create', 'show', 'edit'])->names('admin.quiz');
+    Route::resource('quiz', QuizController::class)->except(['create', 'show', 'edit'])->names('admin.quiz');
     Route::get('quiz/question', fn()=>view("admin.question.index", ["title" => "Pertanyaan"]))->name('admin.question.index');
     Route::get('quiz/essay', fn()=>view("admin.question.essay"))->name('admin.question.essay');
 

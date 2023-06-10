@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('quiz_name');
             $table->enum('quiz_category', ['SMP', 'SMA']);
+            $table->enum('quiz_type', ['MC', 'ES']);
             $table->string('quiz_code');
-            $table->dateTime('satrt_time');
+            $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->integer('duration')->unsigned()->nullable();
             $table->boolean('is_active')->default(true);
