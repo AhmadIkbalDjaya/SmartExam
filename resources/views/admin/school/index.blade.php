@@ -2,7 +2,6 @@
 
 @push('style')
   <link rel="stylesheet" href="{{ asset('/css/table.css') }}">
-  @livewireStyles
 @endpush
 
 @section('body')
@@ -19,6 +18,5 @@
     <script src="{{ asset('/js/password.js') }}"></script>
     <script src="{{ asset('/js/alerts.js') }}"></script>
     <script src="{{ asset('js/modal.js') }}"></script>
-    @livewireScripts
   @endpush
 @endsection

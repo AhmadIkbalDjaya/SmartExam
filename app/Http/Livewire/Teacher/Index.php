@@ -28,11 +28,6 @@ class Index extends Component
         ]);
     }
 
-    function show(Teacher $teacher)
-    {
-        $this->setField($teacher);
-    }
-
     public function store()
     {
         $validated = $this->validate([
@@ -65,11 +60,6 @@ class Index extends Component
         $this->teacher_edit_id = '';
         $this->resetField();
         $this->dispatchBrowserEvent('close-modal');
-    }
-
-    function delete(Teacher $teacher)
-    {
-        $this->setField($teacher);
     }
 
     function destroy(Teacher $teacher)

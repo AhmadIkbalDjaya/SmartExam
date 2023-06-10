@@ -12,6 +12,7 @@
   <script src="https://kit.fontawesome.com/b7b20c00b9.js" crossorigin="anonymous"></script>
   {{-- CSS --}}
   <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+  @livewireStyles
   @stack('style')
   @stack('tex-editor')
 </head>
@@ -38,6 +39,7 @@
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"
     integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  @livewireScripts
 </body>
 
 </html>

@@ -42,7 +42,7 @@
                               </span>
                             </button>
                             <button style=" border: none;background: none; padding: 0">
-                              <span wire:click="delete({{ $school->id }})" class="badge text-bg-danger"
+                              <span wire:click="setField({{ $school->id }})" class="badge text-bg-danger"
                                 data-bs-toggle="modal" data-bs-target="#deleteModal">
                                 Delete
                               </span>
