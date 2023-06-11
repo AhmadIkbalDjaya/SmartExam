@@ -6,7 +6,7 @@ use App\Models\Quiz;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AdminQuizController extends Controller
+class QuizController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class AdminQuizController extends Controller
     {
         // $quizzes = Quiz::where('quiz_category', auth()->teacher()->school()->school_category)->get();
         $quizzes = Quiz::all();
-        return view("admin.quiz.index", [
+        return view("admin-teacher.quiz.index", [
             "title" => "Quiz",
             "quizzes" => $quizzes,
         ]);
@@ -44,6 +44,7 @@ class AdminQuizController extends Controller
         $validated = $request->validate([
             "quiz_name" => "required|string",
             "quiz_category" => "required|in:SMP,SMA",
+            "quiz_type" => "required|in:MC,ES",
             "quiz_code" => "required|unique:quizzes,quiz_code",
             "start_time" => "required|date",
             "end_time" => "required|date|after:start_time",
@@ -88,6 +89,7 @@ class AdminQuizController extends Controller
         $validated = $request->validate([
             "quiz_name" => "required|string",
             "quiz_category" => "required|in:SMP,SMA",
+            "quiz_type" => "required|in:MC,ES",
             "quiz_code" => "required|unique:quizzes,quiz_code,$quiz->id",
             "start_time" => "required|date",
             "end_time" => "required|date|after:start_time",
