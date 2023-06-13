@@ -39,12 +39,16 @@ Route::prefix('admin')->group(function (){
     
 
     Route::get('/teacher/home', fn()=> view('teacher.home.index', ["title" => "home"]))->name('teacher.home.index');
-    Route::get('/teacher/profile', fn()=> view('teacher.profile.index', ["title" => "profile"]))->name('teacher.profile.index');
+    Route::get('/teacher/student', fn()=> view('teacher.student.index', ["title" => "student"]))->name('teacher.student.index');
     Route::get('/teacher/quiz', fn()=> view('teacher.quiz.index', ["title" => "quiz"]))->name('teacher.quiz.index');
     Route::get('/teacher/question', fn()=> view('teacher.question.index', ["title" => "question"]))->name('teacher.question.index');
     Route::get('/teacher/essay', fn()=> view('teacher.question.essay', ["title" => "question"]))->name('teacher.question.essay');
     Route::get('/teacher/recap', fn()=> view('teacher.recap.index', ["title" => "recap"]))->name('teacher.recap.index');
-    Route::get('/teacher/student', fn()=> view('teacher.student.index', ["title" => "student"]))->name('teacher.student.index');
     Route::get('/teacher/quizRecap', fn()=> view('teacher.quizRecap.index', ["title" => "quizRecap"]))->name('teacher.quizRecap.index');
     Route::get('/teacher/print', fn()=> view('teacher.print.index', ["title" => "print"]))->name('teacher.print.index');
+    Route::get('/teacher/profile', fn()=> view('teacher.profile.index', ["title" => "profile"]))->name('teacher.profile.index');
+
+    Route::get('/student/home', fn()=> view('student.home.index', ["title" => "home"]))->name('student.home.index');
+    Route::get('/student/cbtTest', fn()=> view('student.cbtTest.index', ["title" => "cbtTest"]))->name('student.cbtTest.index');
+    Route::get('/student/profile', fn()=> view('student.profile.index', ["title" => "profile"]))->name('student.profile.index');
 });
