@@ -48,7 +48,7 @@
                               @endif
                             </td>
                             <td>
-                              <a href="{{ route('admin.question.index') }}"
+                              <a href="{{ route('admin.question.index', ['quiz' => $quiz->id]) }}"
                                 style=" border: none;background: none; padding: 0"><span
                                   class="badge text-bg-primary">Tambah Soal</span></a>
                             </td>
