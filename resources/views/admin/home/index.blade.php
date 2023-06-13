@@ -19,7 +19,9 @@
                   <div class="card p-3 text-center rounded-4">
                     <h5>Jumlah Data Sekolah</h5>
                     <div style="height: 80px; width: 80px; margin: auto" class="rounded-circle bg-info">
-                      <h3 style="margin-top: 28px">3</h3>
+                      <h3 style="margin-top: 28px">
+                        {{ $school_count }}
+                      </h3>
                     </div>
                   </div>
                 </div>
@@ -27,7 +29,9 @@
                   <div class="card p-3 text-center rounded-4">
                     <h5>Jumlah Data Guru</h5>
                     <div style="height: 80px; width: 80px; margin: auto" class="rounded-circle bg-info">
-                      <h3 style="margin-top: 28px">2</h3>
+                      <h3 style="margin-top: 28px">
+                        {{ $teacher_count }}
+                      </h3>
                     </div>
                   </div>
                 </div>
@@ -35,7 +39,9 @@
                   <div class="card p-3 text-center rounded-4">
                     <h5>Jumlah Data Siswa</h5>
                     <div style="height: 80px; width: 80px; margin: auto" class="rounded-circle bg-info">
-                      <h3 style="margin-top: 28px">32</h3>
+                      <h3 style="margin-top: 28px">
+                        {{ $student_count }}
+                      </h3>
                     </div>
                   </div>
                 </div>
