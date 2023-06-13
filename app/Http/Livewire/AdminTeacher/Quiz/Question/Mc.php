@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire\AdminTeacher\Quiz\Question;
 
-use App\Models\Question;
+use App\Models\Option;
 use Livewire\Component;
+use App\Models\Question;
 
 class Mc extends Component
 {
@@ -22,7 +23,8 @@ class Mc extends Component
         ]);
     }
 
-    function store() {
+    function store()
+    {
         $validated = $this->validate([
             "question" => "required",
             "optionA" => "required",
@@ -30,6 +32,48 @@ class Mc extends Component
             "optionC" => "required",
             "optionD" => "required",
             "optionE" => "required",
+            "correct" => "required",
         ]);
+        $question = [
+            "quiz_id" => $this->quiz->id,
+            "question" => $this->question,
+        ];
+        $options = [
+            ["option" => "A", "option_body" => $this->optionA],
+            ["option" => "B", "option_body" => $this->optionB],
+            ["option" => "C", "option_body" => $this->optionC],
+            ["option" => "D", "option_body" => $this->optionD],
+            ["option" => "E", "option_body" => $this->optionE],
+        ];
+        $question = Question::create($question);
+        foreach ($options as $option) {
+            $correct = $option["option"] == $this->correct ? true : false;
+            Option::create([
+                "question_id" => $question->id,
+                "option" => $option["option"],
+                "option_body" => $option["option_body"],
+                "is_correct" => $correct,
+            ]);
+        }
+        // $option = [
+        //     "question_id" => $question->id,
+        //     "option" => "A",
+        //     "option_body" => $this->optionA,
+        //     "is_correct" => $this->correct == "A" ? true : false,
+        // ];
+        // Option::create($option);
+        $this->resetField();
+        $this->dispatchBrowserEvent("close-modal");
+    }
+
+    function resetField()
+    {
+        $this->question = "";
+        $this->optionA = "";
+        $this->optionB = "";
+        $this->optionC = "";
+        $this->optionD = "";
+        $this->optionE = "";
+        $this->correct = "";
     }
 }
