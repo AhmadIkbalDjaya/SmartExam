@@ -32,8 +32,6 @@ Route::prefix('admin')->group(function () {
     Route::get('student', [StudentController::class, 'index'])->name('admin.student.index');
     Route::get('quiz', [QuizController::class, 'index'])->name('admin.quiz.index');
     Route::get('quiz/{quiz}/question', [QuestionController::class, 'index'])->name('admin.question.index');
-    // Route::get('quiz/question', fn () => view("admin.question.index", ["title" => "Pertanyaan"]))->name('admin.question.index');
-    // Route::get('quiz/essay', fn () => view("admin.question.essay"))->name('admin.question.essay');
 
     Route::get('recap', fn () => view('admin.recap.index', ["title" => "recap"]))->name('admin.recap.index');
     Route::get('profile', fn () => view('admin.profile.index', ["title" => "profil"]))->name('admin.profile.index');
@@ -52,3 +50,7 @@ Route::prefix('teacher')->group(function () {
     Route::get('quizRecap', fn () => view('teacher.quizRecap.index', ["title" => "quizRecap"]))->name('teacher.quizRecap.index');
     Route::get('print', fn () => view('teacher.print.index', ["title" => "print"]))->name('teacher.print.index');
 });
+
+Route::get('home', fn () => view('student.home.index', ["title" => "home"]))->name('student.home.index');
+Route::get('cbtTest', fn () => view('student.cbtTest.index', ["title" => "cbtTest"]))->name('student.cbtTest.index');
+Route::get('profile', fn () => view('student.profile.index', ["title" => "profile"]))->name('student.profile.index');
