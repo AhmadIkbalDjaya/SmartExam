@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\SchoolSeeder;
 use Database\Seeders\StudentSeeder;
+use Database\Seeders\QuizStudentSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SchoolSeeder::class);
         $this->call(TeacherSeeder::class);
         $this->call(StudentSeeder::class);
+        $this->call(QuizStudentSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

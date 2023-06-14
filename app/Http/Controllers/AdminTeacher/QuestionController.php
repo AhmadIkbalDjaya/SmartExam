@@ -9,7 +9,7 @@ use App\Models\Question;
 
 class QuestionController extends Controller
 {
-    function index(Quiz $quiz)
+    public function index(Quiz $quiz)
     {
         // $questions = Question::where('quiz_id', $quiz->id)->get();
         $viewData = [
