@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminTeacher\QuizController;
 use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminTeacherController;
 use App\Http\Controllers\AdminTeacher\QuestionController;
+use App\Http\Controllers\AdminTeacher\RecapController;
 use App\Http\Controllers\AdminTeacher\StudentController;
 use App\Http\Controllers\DashboardController;
 
@@ -33,10 +34,13 @@ Route::prefix('admin')->group(function () {
     Route::get('quiz', [QuizController::class, 'index'])->name('admin.quiz.index');
     Route::get('quiz/{quiz}/question', [QuestionController::class, 'index'])->name('admin.question.index');
 
-    Route::get('recap', fn () => view('admin.recap.index', ["title" => "recap"]))->name('admin.recap.index');
+    // Route::get('recap', fn () => view('admin.recap.index', ["title" => "recap"]))->name('admin.recap.index');
+    Route::get('recap', [RecapController::class, 'index'])->name('admin.recap.index');
+    // Route::get('quizRecap', fn () => view('admin.quizRecap.index', ["title" => "quizRecap"]))->name('admin.quizRecap.index');
+    Route::get('recap/quiz/{quiz}', [RecapController::class, 'showQuizRecap'])->name('admin.recap.quiz.index');
+    // Route::get('print', fn () => view('admin.print.index', ["title" => "print"]))->name('admin.print.index');
+    Route::get('/recap/quiz/{quiz}/print', [RecapController::class, "printRecap"])->name('admin.recap.quiz.print');
     Route::get('profile', fn () => view('admin.profile.index', ["title" => "profil"]))->name('admin.profile.index');
-    Route::get('quizRecap', fn () => view('admin.quizRecap.index', ["title" => "quizRecap"]))->name('admin.quizRecap.index');
-    Route::get('print', fn () => view('admin.print.index', ["title" => "print"]))->name('admin.print.index');
 });
 
 Route::prefix('teacher')->group(function () {
