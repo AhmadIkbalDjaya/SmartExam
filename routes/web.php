@@ -54,3 +54,4 @@ Route::prefix('teacher')->group(function () {
 Route::get('home', fn () => view('student.home.index', ["title" => "home"]))->name('student.home.index');
 Route::get('cbtTest', fn () => view('student.cbtTest.index', ["title" => "cbtTest"]))->name('student.cbtTest.index');
 Route::get('profile', fn () => view('student.profile.index', ["title" => "profile"]))->name('student.profile.index');
+Route::get('question', fn () => view('student.question.index', ["title" => "question"]))->name('student.question.index');
