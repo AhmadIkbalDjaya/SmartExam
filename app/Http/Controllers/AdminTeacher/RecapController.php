@@ -18,11 +18,9 @@ class RecapController extends Controller
     }
 
     public function showQuizRecap(Quiz $quiz) {
-        // $quizStudents = QuizStudent::where("quiz_id", $quiz->id)->orderBy('score', 'desc')->get();
         return view("admin-teacher.recap.quizRecap.index", [
             "title" => "Recap $quiz->quiz_name",
             "quiz" => $quiz,
-            // "quizStudents" => $quizStudents,
         ]);
     }
 

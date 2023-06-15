@@ -8,8 +8,6 @@
   @include('components.spasi')
   <div class="page-wrapper">
     <div class="page-breadcrumb">
-      <!-- alerts -->
-      <div id="alerts"></div>
       <!-- Print Quizz Recap -->
       <section id="header">
         <div class="container-fluid py-4">

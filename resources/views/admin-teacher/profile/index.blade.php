@@ -9,26 +9,8 @@
   @include('components.spasi')
   <div class="page-wrapper">
     <div class="page-breadcrumb">
-      <!-- Quizz Recap -->
-      <section id="header">
-        <div class="container-fluid card py-4">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="container-fluid">
-                <div class="row p-3">
-                  <div class="col-md-12 text-center">
-                    <h3>Rekapan Quiz</h3>
-                    <p>{{ $quiz->quiz_name }}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="header">
-        <livewire:admin-teacher.recap.show :quiz="$quiz" />
-      </section>
+      <!-- Profile -->
+      <livewire:admin-teacher.profile.index />
     </div>
     <footer class="footer text-center">
       © 2023 CBT Online by <a
@@ -39,5 +21,6 @@
   @push('script')
     <script src="{{ asset('/js/alerts.js') }}"></script>
     <script src="{{ asset('/js/password.js') }}"></script>
+    <script src="{{ asset('/js/modal.js') }}"></script>
   @endpush
 @endsection
