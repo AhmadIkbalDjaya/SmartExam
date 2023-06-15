@@ -19,7 +19,9 @@
                   <div class="card p-4 text-center rounded-4">
                     <h5>Total Soal Ujian</h5>
                     <div style="height: 100px; width: 100px; margin: auto" class="rounded-circle bg-info">
-                      <h3 style="margin-top: 40px">3</h3>
+                      <h3 style="margin-top: 40px">
+                        {{ $quiz_count }}
+                      </h3>
                     </div>
                   </div>
                 </div>
@@ -27,7 +29,9 @@
                   <div class="card p-4 text-center rounded-4">
                     <h5>Total Ujian Yang Dikerjakan</h5>
                     <div style="height: 100px; width: 100px; margin: auto" class="rounded-circle bg-info">
-                      <h3 style="margin-top: 40px">3</h3>
+                      <h3 style="margin-top: 40px">
+                        {{ $done_quiz_count }}
+                      </h3>
                     </div>
                   </div>
                 </div>

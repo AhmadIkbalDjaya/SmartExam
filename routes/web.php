@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\AdminTeacherController;
 use App\Http\Controllers\AdminTeacher\RecapController;
 use App\Http\Controllers\AdminTeacher\StudentController;
 use App\Http\Controllers\AdminTeacher\QuestionController;
+use App\Http\Controllers\Student\StudentHomeController;
+use App\Http\Controllers\Student\StudentQuizController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +23,9 @@ use App\Http\Controllers\AdminTeacher\QuestionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::prefix('admin')->group(function () {
     Route::get('', [DashboardController::class, 'index'])->name('admin.home.index');
@@ -49,7 +51,9 @@ Route::prefix('teacher')->group(function () {
     Route::get('profile', [ProfileController::class, 'index'])->name('teacher.profile.index');
 });
 
-Route::get('home', fn () => view('student.home.index', ["title" => "home"]))->name('student.home.index');
-Route::get('cbtTest', fn () => view('student.cbtTest.index', ["title" => "cbtTest"]))->name('student.cbtTest.index');
+// Route::get('home', fn () => view('student.home.index', ["title" => "home"]))->name('student.home.index');
+Route::get('', [StudentHomeController::class, "index"])->name('student.home.index');
+// Route::get('cbtTest', fn () => view('student.cbtTest.index', ["title" => "cbtTest"]))->name('student.cbtTest.index');
+Route::get('quiz', [StudentQuizController::class, 'index'])->name('student.quiz.index');
 Route::get('profile', fn () => view('student.profile.index', ["title" => "profile"]))->name('student.profile.index');
 Route::get('question', fn () => view('student.question.index', ["title" => "question"]))->name('student.question.index');
