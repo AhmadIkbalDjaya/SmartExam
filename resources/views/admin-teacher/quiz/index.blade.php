@@ -5,7 +5,8 @@
 @endpush
 
 @section('body')
-  @include('components.navbarAdmin')
+  {{-- @include('components.navbarAdmin') --}}
+  @include('components.navbarTeacher')
   @include('components.spasi')
   <div class="page-wrapper">
     <livewire:admin-teacher.quiz.index />

@@ -96,7 +96,7 @@
               class="hide-menu">Dashboard</span></a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('student.cbtTest.index') }}"
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('student.quiz.index') }}"
             aria-expanded="false"> <i class="me-3 fa fa-book-open" aria-hidden="true"></i><span
               class="hide-menu">Ujian CBT</span></a>
         </li>
