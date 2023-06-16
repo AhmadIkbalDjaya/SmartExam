@@ -236,7 +236,7 @@
                                         <tr>
                                           <td>Nilai Ujian</td>
                                           <td>:</td>
-                                          <td class="fw-bold fs-3">90</td>
+                                          <td class="fw-bold">90</td>
                                         </tr>
                                       </tbody>
                                     </table>
