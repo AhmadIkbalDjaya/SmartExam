@@ -10,7 +10,7 @@
               <div class="row p-3">
                 <div class="col-md-12">
                   <h3>Siswa</h3>
-                  <p>Menambah, Mengedit, atau Menghapus Siswaa</p>
+                  <p>Menambah, Mengedit, dan Menghapus Siswaa</p>
                 </div>
                 <div class="col-md-4">
                   <button wire:click="resetField" type="button" class="btn btn-primary" data-bs-toggle="modal"
