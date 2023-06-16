@@ -3,16 +3,16 @@
 @push('style')
   <link rel="stylesheet" href="{{ asset('/css/table.css') }}">
 @endpush
-@push('style')
-  <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
-@endpush
 
 @section('body')
-  @include('components.navbarTeacher')
   {{-- @include('components.navbarAdmin') --}}
+  @include('components.navbarTeacher')
   @include('components.spasi')
   <div class="page-wrapper">
-    <livewire:admin-teacher.quiz.question.mc :quiz="$quiz">
+    <div class="page-breadcrumb">
+      <!-- Profile -->
+      <livewire:admin-teacher.profile.index />
+    </div>
     <footer class="footer text-center">
       © 2023 CBT Online by <a
         href="https://l.instagram.com/?u=http%3A%2F%2Fbit.ly%2F3UaE7in&e=AT0IbESTXiAOKa7dxGjRS7TwV1mU3eagwftwzG-WUCjc6a8XKAWg_czE-a9qrlrI9tTvLMe5y4ckTmhdMcbKBXki7cKHOUaoYvnoa9s">Adrian.com</a>

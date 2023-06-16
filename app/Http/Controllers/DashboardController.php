@@ -12,7 +12,7 @@ class DashboardController extends Controller
     function index()
     {
         return view("admin.home.index", [
-            "title" => "Admin Dashbaord",
+            "title" => "Home",
             "school_count" => School::count(),
             "teacher_count" => Teacher::count(),
             "student_count" => Student::count(),
