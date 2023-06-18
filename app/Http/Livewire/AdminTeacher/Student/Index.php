@@ -4,6 +4,7 @@ namespace App\Http\Livewire\AdminTeacher\Student;
 
 use App\Models\Student;
 use App\Models\School;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Index extends Component
@@ -13,8 +14,12 @@ class Index extends Component
 
     public function render()
     {
-        // $students = Student::where('school_id', auth()->teacher()->school_id);
-        $students = Student::latest()->get();
+        if (Auth::guard('teacher')->check()) {
+            $students = Student::where('school_id', Auth::guard('teacher')->user()->school->id)->get();
+        } else {
+            $students = Student::latest()->get();
+        }
+        
         return view('livewire.admin-teacher.student.index', [
             "students" => $students,
             "schools" => School::all(),

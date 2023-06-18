@@ -5,8 +5,11 @@
 @endpush
 
 @section('body')
-  {{-- @include('components.navbarAdmin') --}}
-  @include('components.navbarTeacher')
+  @if (Auth::guard('user')->check())
+    @include('components.navbarAdmin')
+  @elseif (Auth::guard('teacher')->check())
+    @include('components.navbarTeacher')
+  @endif
   @include('components.spasi')
   <div class="page-wrapper">
     <livewire:admin-teacher.quiz.index />

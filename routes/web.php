@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminTeacher\DashboardController;
 use App\Http\Controllers\Admin\AdminSchoolController;
 use App\Http\Controllers\AdminTeacher\QuizController;
 use App\Http\Controllers\Admin\AdminTeacherController;

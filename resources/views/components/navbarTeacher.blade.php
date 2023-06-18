@@ -15,7 +15,13 @@
           <img src="{{ asset('/images/logo.png') }}" alt="homepage" height="60px" />
         </b>
         <span class="logo-text text-dark pt-2 w-100">
-          <h3>Teacher</h3>
+          <h3 class="m-0">Teacher</h3>
+          <h6>
+            {{-- {{ Auth::guard('teacher')->user()->username }} <br> --}}
+            <span style="font-size: 10px; color: grey;">
+              {{ Auth::guard('teacher')->user()->school->school_name }}
+            </span>
+          </h6>
         </span>
 
       </a>

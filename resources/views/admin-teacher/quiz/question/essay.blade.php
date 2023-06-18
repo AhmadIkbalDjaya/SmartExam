@@ -8,7 +8,11 @@
 @endpush
 
 @section('body')
-  @include('components.navbarAdmin')
+  @if (Auth::guard('user')->check())
+    @include('components.navbarAdmin')
+  @elseif (Auth::guard('teacher')->check())
+    @include('components.navbarTeacher')
+  @endif
   @include('components.spasi')
   <div class="page-wrapper">
     <div class="page-breadcrumb">
