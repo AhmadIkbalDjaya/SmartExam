@@ -44,16 +44,18 @@ class LoginController extends Controller
         return redirect()->route('login')->with('loginError', "Username / Password salah");
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        // Auth::logout();
         if (Auth::guard('student')->check()) {
             Auth::guard('student')->logout();
-        } elseif(Auth::guard('teacher')->check()) {
+        } elseif (Auth::guard('teacher')->check()) {
             Auth::guard('teacher')->logout();
-        } elseif(Auth::guard('user')->check()) {
+        } elseif (Auth::guard('user')->check()) {
             Auth::guard('user')->logout();
         }
-        return redirect()->route("login.index");
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route("login");
     }
 }

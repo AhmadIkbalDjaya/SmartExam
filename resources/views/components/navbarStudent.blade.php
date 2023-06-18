@@ -69,12 +69,13 @@
               <div class="bg-primary rounded-circle me-2 d-flex align-items-center justify-content-center icn-akun"
                 style="height: 35px; width: 35px;">S</div>
             </button>
-            <ul class="dropdown-menu dropdown-menu-end p-0">
+            <ul class="dropdown-menu dropdown-menu-end py-2">
               <li>
-                <button class="dropdown-item" type="button">
-                  <a href="{{ route('logout') }}" class="text-dark">
-                    Logout
-                  </a>
+                <button class="dropdown-item p-0" type="button">
+                  <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button type="submit" class="border-0 bg-transparent ">Logout</button>
+                  </form>
                 </button>
               </li>
             </ul>
@@ -110,7 +111,10 @@
               class="hide-menu">Profile</span></a>
         </li>
         <li class="text-center p-20 upgrade-btn">
-          <a href="{{ route('logout') }}" class="btn btn-danger text-white mt-4">Logout</a>
+          <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <button type="submit" class="btn btn-danger text-white mt-4">Logout</button>
+          </form>
         </li>
       </ul>
     </nav>
