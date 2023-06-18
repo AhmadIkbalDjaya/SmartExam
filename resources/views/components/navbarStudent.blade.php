@@ -71,7 +71,11 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end p-0">
               <li>
-                <button class="dropdown-item" type="button">Logout</button>
+                <button class="dropdown-item" type="button">
+                  <a href="{{ route('logout') }}" class="text-dark">
+                    Logout
+                  </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -97,8 +101,8 @@
         </li>
         <li class="sidebar-item">
           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('student.quiz.index') }}"
-            aria-expanded="false"> <i class="me-3 fa fa-book-open" aria-hidden="true"></i><span
-              class="hide-menu">Ujian CBT</span></a>
+            aria-expanded="false"> <i class="me-3 fa fa-book-open" aria-hidden="true"></i><span class="hide-menu">Ujian
+              CBT</span></a>
         </li>
         <li class="sidebar-item">
           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('student.profile.index') }}"
@@ -106,7 +110,7 @@
               class="hide-menu">Profile</span></a>
         </li>
         <li class="text-center p-20 upgrade-btn">
-          <a href="" class="btn btn-danger text-white mt-4" target="_blank">Logout</a>
+          <a href="{{ route('logout') }}" class="btn btn-danger text-white mt-4">Logout</a>
         </li>
       </ul>
     </nav>

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\SchoolSeeder;
 use Database\Seeders\StudentSeeder;
@@ -21,6 +22,11 @@ class DatabaseSeeder extends Seeder
         $this->call(TeacherSeeder::class);
         $this->call(StudentSeeder::class);
         $this->call(QuizStudentSeeder::class);
+        User::create([
+            "username" => "admin",
+            "password" => bcrypt('password'),
+            "email" => "admin@gmail.com",
+        ]);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

@@ -19,7 +19,7 @@ class StudentSeeder extends Seeder
             [
                 'username' => 'student1',
                 // 'password' => Hash::make('password1'),
-                'password' => 'password1',
+                'password' => bcrypt('password1'),
                 'school_id' => 1,
                 'name' => 'John Doe',
                 'gender' => 'Laki-laki',
@@ -27,7 +27,7 @@ class StudentSeeder extends Seeder
             [
                 'username' => 'student2',
                 // 'password' => Hash::make('password2'),
-                'password' => 'password2',
+                'password' => bcrypt('password2'),
                 'school_id' => 1,
                 'name' => 'Jane Smith',
                 'gender' => 'Perempuan',
@@ -35,7 +35,7 @@ class StudentSeeder extends Seeder
             [
                 'username' => 'student3',
                 // 'password' => Hash::make('password3'),
-                'password' => 'password3',
+                'password' => bcrypt('password3'),
                 'school_id' => 1,
                 'name' => 'Michael Johnson',
                 'gender' => 'Laki-laki',
@@ -43,7 +43,7 @@ class StudentSeeder extends Seeder
             [
                 'username' => 'student4',
                 // 'password' => Hash::make('password4'),
-                'password' => 'password4',
+                'password' => bcrypt('password4'),
                 'school_id' => 2,
                 'name' => 'Emily Anderson',
                 'gender' => 'Perempuan',
@@ -51,7 +51,7 @@ class StudentSeeder extends Seeder
             [
                 'username' => 'student5',
                 // 'password' => Hash::make('password5'),
-                'password' => 'password5',
+                'password' => bcrypt('password5'),
                 'school_id' => 2,
                 'name' => 'David Lee',
                 'gender' => 'Laki-laki',

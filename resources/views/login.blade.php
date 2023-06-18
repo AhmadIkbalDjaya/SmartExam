@@ -18,8 +18,11 @@
             <div class="col-11 col-md-5">
               <div class="login-box">
                 <p>Login</p>
-                <p style="color: red; font-style: italic;" class="text-center">Username / Password Salah!</p>
-                <form action="" method="post">
+                @if (session()->has('loginError'))
+                  <p style="color: red; font-style: italic;" class="text-center">Username / Password Salah!</p>
+                @endif
+                <form action="{{ route('loginProcess') }}" method="post">
+                  @csrf
                   <div class="user-box">
                     <input required="" name="username" type="text" />
                     <label>Username</label>

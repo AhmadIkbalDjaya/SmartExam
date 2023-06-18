@@ -71,7 +71,11 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end p-0">
               <li>
-                <button class="dropdown-item" type="button">Logout</button>
+                <button class="dropdown-item" type="button">
+                  <a href="{{ route('logout') }}" class="text-dark">
+                    Logout
+                  </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -116,7 +120,7 @@
               class="hide-menu">Profile</span></a>
         </li>
         <li class="text-center p-20 upgrade-btn">
-          <a href="" class="btn btn-danger text-white mt-4" target="_blank">Logout</a>
+          <a href="{{ route('logout') }}" class="btn btn-danger text-white mt-4">Logout</a>
         </li>
       </ul>
     </nav>
