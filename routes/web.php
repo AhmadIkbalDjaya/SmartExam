@@ -57,3 +57,6 @@ Route::get('', [StudentHomeController::class, "index"])->name('student.home.inde
 Route::get('quiz', [StudentQuizController::class, 'index'])->name('student.quiz.index');
 Route::get('profile', fn () => view('student.profile.index', ["title" => "profile"]))->name('student.profile.index');
 Route::get('question', fn () => view('student.question.index', ["title" => "question"]))->name('student.question.index');
+
+// login
+Route::get('/login', fn()=> view('index', ["title" => "login"]))->name('login.index');
