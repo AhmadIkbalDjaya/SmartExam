@@ -15,7 +15,8 @@
           <img src="{{ asset('/images/logo.png') }}" alt="homepage" height="60px" />
         </b>
         <span class="logo-text text-dark pt-2 w-100">
-          <h3>Siswa</h3>
+          <h3 class="m-0">Siswa</h3>
+          <h6 class="m-0 fs-6">{{ Auth::guard('student')->user()->name }}</h6>
         </span>
 
       </a>
