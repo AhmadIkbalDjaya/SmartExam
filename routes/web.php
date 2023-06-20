@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminTeacher\StudentController;
 use App\Http\Controllers\AdminTeacher\QuestionController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Student\StudentHomeController;
+use App\Http\Controllers\Student\StudentProfileController;
 use App\Http\Controllers\Student\StudentQuizController;
 use GuzzleHttp\Middleware;
 
@@ -59,7 +60,8 @@ Route::middleware(['auth:teacher', 'teacher'])->group(function () {
 Route::middleware(['auth:student', 'student'])->group(function () {
     Route::get('', [StudentHomeController::class, "index"])->name('student.home.index');
     Route::get('quiz', [StudentQuizController::class, 'index'])->name('student.quiz.index');
-    Route::get('profile', fn () => view('student.profile.index', ["title" => "profile"]))->name('student.profile.index');
+    // Route::get('profile', fn () => view('student.profile.index', ["title" => "profile"]))->name('student.profile.index');
+    Route::get('profile', [StudentProfileController::class, 'index'])->name('student.profile.index');
     Route::get('question', fn () => view('student.question.index', ["title" => "question"]))->name('student.question.index');
 });
 
