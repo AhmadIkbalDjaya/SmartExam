@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class StudentQuizController extends Controller
 {
     public function index() {
-        $quizzes = Quiz::where("quiz_category", Auth::guard('student')->user()->school->school_category);
+        // $quizzes = Quiz::where("quiz_category", Auth::guard('student')->user()->school->school_category)->get();
         return view("student.quiz.index", [
             "title" => "Lihat Quiz",
-            "quizzes" => $quizzes,
+            // "quizzes" => $quizzes,
         ]);
     }
 }

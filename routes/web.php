@@ -60,9 +60,8 @@ Route::middleware(['auth:teacher', 'teacher'])->group(function () {
 Route::middleware(['auth:student', 'student'])->group(function () {
     Route::get('', [StudentHomeController::class, "index"])->name('student.home.index');
     Route::get('quiz', [StudentQuizController::class, 'index'])->name('student.quiz.index');
-    // Route::get('profile', fn () => view('student.profile.index', ["title" => "profile"]))->name('student.profile.index');
     Route::get('profile', [StudentProfileController::class, 'index'])->name('student.profile.index');
-    Route::get('question', fn () => view('student.question.index', ["title" => "question"]))->name('student.question.index');
+    Route::get('quiz-work/{quiz}', fn () => view('student.question.index', ["title" => "question"]))->name('student.quiz-work.index');
 });
 
 Route::get('login', [LoginController::class, 'index'])->name('login')->middleware('guest');
