@@ -33,7 +33,7 @@ class Index extends Component
         $authUser = Auth::guard('student')->user();
         return view('livewire.student.profile.index', [
             "student" => $authUser,
-            "quizStudents" => QuizStudent::where('student_id', $authUser->id)->get(),
+            "quizStudents" => QuizStudent::where('student_id', $authUser->id)->latest()->get(),
         ]);
     }
 

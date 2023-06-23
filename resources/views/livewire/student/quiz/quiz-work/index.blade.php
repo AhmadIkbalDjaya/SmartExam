@@ -22,17 +22,19 @@
                 @foreach ($questions as $question)
                   <div
                     class="question-box 
-                  @if ($loop->iteration == $active_question) show-question
-                  @else
-                    hide-question @endif
-                  ">
+                    @if ($loop->iteration == $active_question) show-question
+                    @else
+                      hide-question @endif
+                    ">
                     <div class="col-md-12 p-4">
                       <div>
                         {!! $question->question !!}
                       </div>
                       @foreach ($question->option as $option)
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" name="flexRadioDefault"
+                          <input wire:model='selectedOptions.{{ $question->id }}' value="{{ $option->option }}"
+                            class="form-check-input" type="radio"
+                            name="question{{ $question->id }}Option{{ $option->id }}"
                             id="option{{ $option->id }}" />
                           <label class="form-check-label d-flex" for="option{{ $option->id }}">
                             <p>
@@ -46,29 +48,6 @@
                       @endforeach
                     </div>
                   </div>
-                  {{-- @if ($loop->iteration == $active_question)
-                    <div class="question-box">
-                      <div class="col-md-12 p-4">
-                        <div>
-                          {!! $question->question !!}
-                        </div>
-                        @foreach ($question->option as $option)
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                              id="option{{ $option->id }}" />
-                            <label class="form-check-label d-flex" for="option{{ $option->id }}">
-                              <p>
-                                {{ $option->option }}.
-                              </p>
-                              <div>
-                                {!! $option->option_body !!}
-                              </div>
-                            </label>
-                          </div>
-                        @endforeach
-                      </div>
-                    </div>
-                  @endif --}}
                 @endforeach
               </div>
               <div class="row p-2">
@@ -87,6 +66,15 @@
                       <i class="bi bi-arrow-right"></i>
                     </button>
                   @endif
+                  @if ($active_question == $question->count())
+                    @if (count($this->selectedOptions) == $question->count())
+                      <button wire:click="saveAnswer" type="submit" class="btn btn-primary">Simpan Jawaban</button>
+                    @else
+                      <div class="text-danger">
+                        Anda belum menjawab semua pertanyaan
+                      </div>
+                    @endif
+                  @endif
                 </div>
               </div>
             </div>
@@ -101,16 +89,17 @@
                   <div class="col-md-12 py-4">
                     @foreach ($questions as $question)
                       <button wire:click='setQuestion({{ $loop->iteration }})' type="button"
-                        class="btn p-0 mt-1 @if ($loop->iteration == $active_question) btn-secondary
-                          @else
-                          btn-info @endif"
+                        class="btn p-0 mt-1 
+                        @if ($loop->iteration == $active_question) btn-secondary
+                        @elseif ($selectedOptions[$question->id] ?? null) btn-success
+                        @else btn-info @endif"
                         style="height: 40px; width: 30px">
                         {{ $loop->iteration }}
                       </button>
                     @endforeach
                   </div>
                 </div>
-                <div class="row py-4 pt-0 pb-2">
+                <div wire:ignore.self class="row py-4 pt-0 pb-2">
                   <div class="col-md-12 d-flex">
                     <p>Waktu Tersisa</p>
                     <strong id="countdown" class="ps-3"></strong>
