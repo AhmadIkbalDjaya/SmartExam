@@ -1,19 +1,20 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\AdminTeacher\DashboardController;
 use App\Http\Controllers\Admin\AdminSchoolController;
 use App\Http\Controllers\AdminTeacher\QuizController;
 use App\Http\Controllers\Admin\AdminTeacherController;
 use App\Http\Controllers\AdminTeacher\RecapController;
+use App\Http\Controllers\Student\StudentHomeController;
+use App\Http\Controllers\Student\StudentQuizController;
 use App\Http\Controllers\AdminTeacher\StudentController;
 use App\Http\Controllers\AdminTeacher\QuestionController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\Student\StudentHomeController;
+use App\Http\Controllers\AdminTeacher\DashboardController;
 use App\Http\Controllers\Student\StudentProfileController;
-use App\Http\Controllers\Student\StudentQuizController;
-use GuzzleHttp\Middleware;
+use App\Http\Controllers\Student\StudentQuizWorkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,7 +62,8 @@ Route::middleware(['auth:student', 'student'])->group(function () {
     Route::get('', [StudentHomeController::class, "index"])->name('student.home.index');
     Route::get('quiz', [StudentQuizController::class, 'index'])->name('student.quiz.index');
     Route::get('profile', [StudentProfileController::class, 'index'])->name('student.profile.index');
-    Route::get('quiz-work/{quiz}', fn () => view('student.question.index', ["title" => "question"]))->name('student.quiz-work.index');
+    Route::get('quiz-work/{quiz:quiz_code}', [StudentQuizWorkController::class, 'index'])->name('student.quiz-work.index');
+    // Route::get('quiz-work/{quiz}', fn () => view('student.question.index', ["title" => "question"]))->name('student.quiz-work.index');
 });
 
 Route::get('login', [LoginController::class, 'index'])->name('login')->middleware('guest');

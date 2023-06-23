@@ -52,7 +52,7 @@ class Index extends Component
         ]);
         $quiz = Quiz::find($this->quiz_id);
         if ($this->input_quiz_code == $quiz->quiz_code) {
-            return redirect()->route("student.quiz-work.index", ['quiz' => $this->quiz_id]);
+            return redirect()->route("student.quiz-work.index", ['quiz' => $this->quiz_code]);
         } elseif ($this->input_quiz_code != $quiz->quiz_code) {
             $this->addError("wrongCode", "Kode quiz tidak sesuai");
         }
