@@ -66,7 +66,7 @@
                       <i class="bi bi-arrow-right"></i>
                     </button>
                   @endif
-                  @if ($active_question == $question->count())
+                  @if ($active_question == $questions->count())
                     @if (count($this->selectedOptions) == $question->count())
                       <button wire:click="saveAnswer" type="submit" class="btn btn-primary">Simpan Jawaban</button>
                     @else

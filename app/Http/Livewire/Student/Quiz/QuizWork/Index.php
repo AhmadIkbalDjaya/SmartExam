@@ -40,14 +40,22 @@ class Index extends Component
     public function saveAnswer() {
         $quiz_id = $this->quiz->id;
         $student_id = Auth::guard('student')->user()->id;
+        // dd($this->selectedOptions);
         foreach ($this->selectedOptions as $key => $selectedOption) {
             //i want make if $selectedOption == $quiz->question[x]->option->question_id
+            // dd(Question::find($key)->correct_answer);
+            // dd($this->quiz->question[$key]->correct_answer);
+            if ($selectedOption == Question::find($key)->correct_answer) {
+                $is_correct = 1;
+            } else {
+                $is_correct = 0;
+            }
             QuizStudentAnswer::create([
                 "quiz_id" => $quiz_id,
                 "student_id" => $student_id,
                 "question_id" => $key,
                 "answer" => $selectedOption,
-                "is_correct" => "0",
+                "is_correct" => $is_correct,
             ]);
         }
         QuizStudent::create([

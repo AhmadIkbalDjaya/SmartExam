@@ -39,6 +39,7 @@ class Mc extends Component
         $question = [
             "quiz_id" => $this->quiz->id,
             "question" => $this->question,
+            "correct_answer" => $this->correct,
         ];
         $options = [
             ["option" => "A", "option_body" => $this->optionA],
