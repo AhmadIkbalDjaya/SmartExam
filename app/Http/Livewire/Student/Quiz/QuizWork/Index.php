@@ -21,32 +21,42 @@ class Index extends Component
         ]);
     }
 
-    public function nextQuestion() {
+    public function nextQuestion()
+    {
         if ($this->active_question !== $this->quiz->question->count()) {
-            $this->active_question ++;
+            $this->active_question++;
         }
     }
 
-    public function previousQuestion() {
+    public function previousQuestion()
+    {
         if ($this->active_question != 1) {
-            $this->active_question --;
+            $this->active_question--;
         }
     }
 
-    public function setQuestion($number) {
+    public function setQuestion($number)
+    {
         $this->active_question = $number;
     }
 
-    public function saveAnswer() {
+    public function saveAnswer()
+    {
+        // hitung score
+        $question_total = $this->quiz->question->count();
+        // dd($question_total);
+        $question_point = 100/$question_total;
+        // dd($question_point);
+        $score = 0;
+
         $quiz_id = $this->quiz->id;
         $student_id = Auth::guard('student')->user()->id;
-        // dd($this->selectedOptions);
+        // simpan jawaban
         foreach ($this->selectedOptions as $key => $selectedOption) {
             //i want make if $selectedOption == $quiz->question[x]->option->question_id
-            // dd(Question::find($key)->correct_answer);
-            // dd($this->quiz->question[$key]->correct_answer);
             if ($selectedOption == Question::find($key)->correct_answer) {
                 $is_correct = 1;
+                $score = $score+$question_point;
             } else {
                 $is_correct = 0;
             }
@@ -58,10 +68,12 @@ class Index extends Component
                 "is_correct" => $is_correct,
             ]);
         }
+
+        // sipman quiz_student
         QuizStudent::create([
             "quiz_id" => $quiz_id,
             "student_id" => Auth::guard('student')->user()->id,
-            "score" => 100,
+            "score" => $score,
         ]);
         return redirect()->route("student.profile.index")->with("success", "quiz berhasil di selesaikan");
     }
