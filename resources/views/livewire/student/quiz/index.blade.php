@@ -111,35 +111,49 @@
                   <div class="col-6">{{ $duration }} Menit</div>
                 </div>
                 <form wire:submit.prevent="startQuiz">
-                <div class="row">
-                  <div class="col-5">
-                    <div>Masukkan Kode Quiz:</div>
-                  </div>
-                  <div class="col-1">:</div>
-                  <div class="col-6">
-                    <div class="mb-3">
-                      <input wire:model="input_quiz_code" name="input_quiz_code" type="text"
-                        class="form-control @error('input_quiz_code') is-invalid @enderror"
-                        id="exampleFormControlInput1" style="height: 25px; width: 120px">
+                  @if (in_array($quiz_id, $quiz_students))
+                    <div class="text-center text-success">
+                      Telah Dikerjakan
+                    </div>
+                  @elseif (\Carbon\Carbon::now()->isBefore(\Carbon\Carbon::parse($quiz->start_time)))
+                    <div class="text-center text-danger">
+                      Quiz Belum di Mulai
+                    </div>
+                  @elseif (\Carbon\Carbon::now()->isAfter(\Carbon\Carbon::parse($quiz->end_time)))
+                    <div class="text-center text-danger">
+                      Quiz sudah berakhir
+                    </div>
+                  @else
+                    <div class="row">
+                      <div class="col-5">
+                        <div>Masukkan Kode Quiz:</div>
+                      </div>
+                      <div class="col-1">:</div>
+                      <div class="col-6">
+                        <div class="mb-3">
+                          <input wire:model="input_quiz_code" name="input_quiz_code" type="text"
+                            class="form-control @error('input_quiz_code') is-invalid @enderror"
+                            id="exampleFormControlInput1" style="height: 25px; width: 120px">
+                        </div>
+                      </div>
+                    </div>
+                  @endif
+                  <div class="row text-center">
+                    <div class="col-12">
+                      <p class="text-danger">
+                        @error('input_quiz_code')
+                          {{ $message }}
+                        @enderror
+                        @error('wrongCode')
+                          {{ $message }}
+                        @enderror
+                      </p>
                     </div>
                   </div>
-                </div>
-                <div class="row text-center">
-                  <div class="col-12">
-                    <p class="text-danger">
-                      @error('input_quiz_code')
-                        {{ $message }}
-                      @enderror
-                      @error('wrongCode')
-                        {{ $message }}
-                      @enderror
-                    </p>
-                  </div>
-                </div>
               </div>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-primary badge">Mulai</button>
-              </form>
+                </form>
               </div>
             </div>
           </div>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Student\Quiz;
 
+use Carbon\Carbon;
 use App\Models\Quiz;
+use App\Models\QuizStudent;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,10 +15,13 @@ class Index extends Component
     public function render()
     {
         $quizzes = Quiz::where("quiz_category", Auth::guard('student')->user()->school->school_category)
-            ->where("is_active", 1)
-            ->get();
+                    ->where("is_active", 1)
+                    ->latest()
+                    ->get();
+        $quiz_students = QuizStudent::where("student_id", Auth::guard("student")->user()->id)->pluck("quiz_id")->toArray();
         return view('livewire.student.quiz.index', [
             "quizzes" => $quizzes,
+            "quiz_students" => $quiz_students,
         ]);
     }
 
@@ -51,7 +56,21 @@ class Index extends Component
             "input_quiz_code" => "required|alpha_dash",
         ]);
         $quiz = Quiz::find($this->quiz_id);
+        // Periksa apakah waktu mulai quiz sudah tercapai
+        $startTime = Carbon::parse($quiz->start_time);
+        if (Carbon::now()->isBefore($startTime)) {
+            $this->addError("wrongCode", "Quiz belum dimulai.");
+            return;
+        }
+
+        // Periksa apakah waktu berakhir quiz sudah tercapai
+        $endTime = Carbon::parse($quiz->end_time);
+        if (Carbon::now()->isAfter($endTime)) {
+            $this->addError("wrongCode", "Quiz telah berakhir.");
+            return;
+        }
         if ($this->input_quiz_code == $quiz->quiz_code) {
+
             return redirect()->route("student.quiz-work.index", ['quiz' => $this->quiz_code]);
         } elseif ($this->input_quiz_code != $quiz->quiz_code) {
             $this->addError("wrongCode", "Kode quiz tidak sesuai");
