@@ -1,6 +1,6 @@
-@php
+{{-- @php
   $duration = $quiz->duration;
-@endphp
+@endphp --}}
 <div class="page-breadcrumb">
   <section id="quiz">
     <div class="container-fluid px-3">
@@ -69,7 +69,8 @@
                       <i class="bi bi-arrow-right"></i>
                     </button>
                   @endif
-                  <button id="saveAnswer" wire:click="saveAnswer" type="submit" class="btn btn-primary d-none">Simpan Jawaban</button>
+                  <button id="saveAnswer" wire:click="saveAnswer" type="submit" class="btn btn-primary d-none">Simpan
+                    Jawaban</button>
                   @if ($active_question == $questions->count())
                     @if (count($this->selectedOptions) == $question->count())
                       <button wire:click="saveAnswer" type="submit" class="btn btn-primary">Simpan Jawaban</button>
@@ -119,24 +120,37 @@
   @push('script')
     <script>
       $(document).ready(function() {
-        var minutes = @json($duration);
-        var seconds = 10;
-        var tempMinutes = minutes.toString().length > 1? minutes : `0${minutes}`;
-        var tempSeconds = seconds.toString().length > 1? seconds : `0${seconds}`;
-        $('#countdown').text(`${tempMinutes} : ${tempSeconds}`)
-        console.log("ok");
+        // countdown
+        var minutes = @json($quiz->duration);
+        var seconds = 60;
+        var tempMinutes = minutes.toString().length > 1 ? minutes : `0${minutes}`;
+        var tempSeconds = seconds.toString().length > 1 ? seconds : `0${seconds}`;
+        $('#countdown').text(`${tempMinutes} : ${tempSeconds}`);
+
+        // expire time
+        var expireTime = @json($quiz->end_time);
+        console.log(expireTime);
+        console.log("--------");
         var timer = setInterval(() => {
-          if( minutes == 0 && seconds == 0 ){
+          // expire time
+          var currentTime = $.now();
+          var currentTime = moment(currentTime).format("YYYY-MM-DD HH:mm:ss")
+          console.log(currentTime);
+          if (currentTime == expireTime) {
             clearInterval(timer);
-            // $("#saveAnswer").click();
-            document.getElementById("saveAnswer").click();
+            $("#saveAnswer").click();
           }
-          if(seconds <= 0){
+
+          if (minutes == 0 && seconds == 0) {
+            clearInterval(timer);
+            $("#saveAnswer").click();
+          }
+          if (seconds <= 0) {
             minutes--;
-            seconds=10;
+            seconds = 60;
           }
-          var tempMinutes = minutes.toString().length > 1? minutes : `0${minutes}`;
-          var tempSeconds = seconds.toString().length > 1? seconds : `0${seconds}`;
+          var tempMinutes = minutes.toString().length > 1 ? minutes : `0${minutes}`;
+          var tempSeconds = seconds.toString().length > 1 ? seconds : `0${seconds}`;
           $('#countdown').text(`${tempMinutes} : ${tempSeconds}`);
           seconds--;
         }, 1000);
