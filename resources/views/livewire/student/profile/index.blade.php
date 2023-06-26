@@ -245,6 +245,11 @@
                       <td>{{ $duration }} menit</td>
                     </tr>
                     <tr>
+                      <td>Jumlah Soal</td>
+                      <td>:</td>
+                      <td>{{ $question_count }}</td>
+                    </tr>
+                    <tr>
                       <td>Nilai Ujian</td>
                       <td>:</td>
                       <td class="fw-bold">{{ $score }}</td>

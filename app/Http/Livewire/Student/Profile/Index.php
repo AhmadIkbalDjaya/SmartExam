@@ -12,6 +12,7 @@ class Index extends Component
 {
     public $password, $password_confirmation;
     public $quiz_student_id, $quiz_id, $quiz_name, $quiz_code, $quiz_category, $quiz_type, $start_time, $end_time, $duration;
+    public $question_count;
     public $score;
 
     public function setField(QuizStudent $quizStudent)
@@ -26,6 +27,7 @@ class Index extends Component
         $this->end_time = $quizStudent->quiz->end_time;
         $this->duration = $quizStudent->quiz->duration;
         $this->score = $quizStudent->score;
+        $this->question_count = $quizStudent->quiz->question->count();
     }
 
     public function render()

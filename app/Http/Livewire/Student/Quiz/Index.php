@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class Index extends Component
 {
     public $quiz_id, $quiz_name, $quiz_code, $quiz_category, $quiz_type, $start_time, $end_time, $duration;
+    public $question_count;
     public $input_quiz_code;
     public function render()
     {
@@ -35,6 +36,7 @@ class Index extends Component
         $this->start_time = $quiz->start_time;
         $this->end_time = $quiz->end_time;
         $this->duration = $quiz->duration;
+        $this->question_count = $quiz->question->count();
         $this->input_quiz_code = "";
     }
 
@@ -48,6 +50,7 @@ class Index extends Component
         $this->start_time = "";
         $this->end_time = "";
         $this->duration = "";
+        $this->question_count = "";
     }
 
     public function startQuiz()

@@ -110,6 +110,13 @@
                   <div class="col-1">:</div>
                   <div class="col-6">{{ $duration }} Menit</div>
                 </div>
+                <div class="row">
+                  <div class="col-5">
+                    <div>Jumlah Soal:</div>
+                  </div>
+                  <div class="col-1">:</div>
+                  <div class="col-6">{{ $question_count }}</div>
+                </div>
                 <form wire:submit.prevent="startQuiz">
                   @if (in_array($quiz_id, $quiz_students))
                     <div class="text-center text-success">
