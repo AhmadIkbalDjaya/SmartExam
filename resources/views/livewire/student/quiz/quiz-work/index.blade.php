@@ -1,6 +1,6 @@
-{{-- @php
+@php
   $duration = $quiz->duration;
-@endphp --}}
+@endphp
 <div class="page-breadcrumb">
   <section id="quiz">
     <div class="container-fluid px-3">
@@ -69,6 +69,7 @@
                       <i class="bi bi-arrow-right"></i>
                     </button>
                   @endif
+                  <button id="saveAnswer" wire:click="saveAnswer" type="submit" class="btn btn-primary d-none">Simpan Jawaban</button>
                   @if ($active_question == $questions->count())
                     @if (count($this->selectedOptions) == $question->count())
                       <button wire:click="saveAnswer" type="submit" class="btn btn-primary">Simpan Jawaban</button>
@@ -104,7 +105,7 @@
                 </div>
                 <div class="row py-4 pt-0 pb-2">
                   <div class="col-md-12 d-flex">
-                    <p>Waktu Tersisa: {{ $quiz->duration }}</p>
+                    <p>Waktu Tersisa: </p>
                     <strong id="countdown" class="ps-3"></strong>
                   </div>
                 </div>
@@ -116,88 +117,30 @@
     </div>
   </section>
   @push('script')
-  <script>
-    // $(document).ready(function(){
-    //   console.log("ok");
-    // })
-  </script>
-    {{-- <script src="{{ asset('/js/time.js') }}"></script> --}}
-    {{-- <script>
-      document.addEventListener('livewire:load', function() {
-        let countdownElement = document.getElementById('countdown');
-
-        let countdown = setInterval(function() {
-          let remainingTime = countdownElement.innerText;
-          let remainingSeconds = parseInt(remainingTime.split(':')[2]);
-          remainingSeconds--;
-
-          if (remainingSeconds < 0) {
-            clearInterval(countdown);
-            return;
-          }
-
-          countdownElement.innerText = formatTime(remainingSeconds);
-        }, 1000);
-
-        function formatTime(seconds) {
-          let hours = Math.floor(seconds / 3600);
-          let minutes = Math.floor((seconds % 3600) / 60);
-          let remainingSeconds = seconds % 60;
-
-          return `${pad(hours)}:${pad(minutes)}:${pad(remainingSeconds)}`;
-        }
-
-        function pad(value) {
-          return String(value).padStart(2, '0');
-        }
-      });
-    </script> --}}
-    {{-- <script>
-      document.addEventListener('livewire:load', function() {
-        let endTime = "{{ $end_work_time }}";
-        let countdown = setInterval(function() {
-          let currentTime = new Date().getTime();
-          let remainingTime = new Date(endTime).getTime() - currentTime;
-
-          if (remainingTime <= 0) {
-            clearInterval(countdown);
-            Livewire.emit('timeExpired');
-          } else {
-            // Kirim sisa waktu ke komponen Livewire
-            Livewire.emit('updateRemainingTime', remainingTime);
-          }
-        }, 1000);
-      });
-    </script>
     <script>
-      document.addEventListener('livewire:load', function() {
-        Livewire.on('updateRemainingTime', () => {
-          // Panggil metode updateRemainingTime pada komponen Livewire
-          Livewire.emit('updateRemainingTime');
-        });
-
-        Livewire.on('timeExpired', () => {
-          // Panggil metode timeExpired pada komponen Livewire
-          Livewire.emit('timeExpired');
-        });
-      });
-    </script> --}}
-    {{-- <script>
-      // document.addEventListener('livewire:load', function() {
-      //   // console.log("tes");
-      //   let updateWaktuSekarang = setInterval(function() {
-      //     Livewire.emit('updateWaktuSekarang');
-      //   }, 1000);
-      // });
       $(document).ready(function() {
-        Livewire.call('updatedWaktuSekarang');
-        Livewire.emit('updatedWaktuSekarang');
-        let updateWaktuSekarang = setInterval(function() {
-          Livewire.call('updatedWaktuSekarang');
-          Livewire.emit('updatedWaktuSekarang');
-        }, 1000);
+        var minutes = @json($duration);
+        var seconds = 10;
+        var tempMinutes = minutes.toString().length > 1? minutes : `0${minutes}`;
+        var tempSeconds = seconds.toString().length > 1? seconds : `0${seconds}`;
+        $('#countdown').text(`${tempMinutes} : ${tempSeconds}`)
         console.log("ok");
-      });
-    </script> --}}
+        var timer = setInterval(() => {
+          if( minutes == 0 && seconds == 0 ){
+            clearInterval(timer);
+            // $("#saveAnswer").click();
+            document.getElementById("saveAnswer").click();
+          }
+          if(seconds <= 0){
+            minutes--;
+            seconds=10;
+          }
+          var tempMinutes = minutes.toString().length > 1? minutes : `0${minutes}`;
+          var tempSeconds = seconds.toString().length > 1? seconds : `0${seconds}`;
+          $('#countdown').text(`${tempMinutes} : ${tempSeconds}`);
+          seconds--;
+        }, 1000);
+      })
+    </script>
   @endpush
 </div>

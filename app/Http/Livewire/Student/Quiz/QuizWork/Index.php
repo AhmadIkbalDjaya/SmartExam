@@ -118,6 +118,8 @@ class Index extends Component
 
     public function saveAnswer()
     {
+        // dd("Save");
+        // redirect()->route("student.profile.index");
         // hitung score
         $question_total = $this->quiz->question->count();
         $question_point = 100 / $question_total;
