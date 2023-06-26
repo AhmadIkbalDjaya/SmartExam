@@ -120,6 +120,9 @@
   @push('script')
     <script>
       $(document).ready(function() {
+        if (@json($has_work)) {
+          window.location.href="{{ route('student.quiz.index') }}";
+        }
         // countdown
         var minutes = @json($quiz->duration);
         var seconds = 60;
@@ -129,13 +132,13 @@
 
         // expire time
         var expireTime = @json($quiz->end_time);
-        console.log(expireTime);
-        console.log("--------");
+        // console.log(expireTime);
+        // console.log("--------");
         var timer = setInterval(() => {
           // expire time
           var currentTime = $.now();
           var currentTime = moment(currentTime).format("YYYY-MM-DD HH:mm:ss")
-          console.log(currentTime);
+          // console.log(currentTime);
           if (currentTime == expireTime) {
             clearInterval(timer);
             $("#saveAnswer").click();

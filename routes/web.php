@@ -66,6 +66,6 @@ Route::middleware(['auth:student', 'student'])->group(function () {
     // Route::get('quiz-work/{quiz}', fn () => view('student.question.index', ["title" => "question"]))->name('student.quiz-work.index');
 });
 
-Route::get('login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('login', [LoginController::class, 'login'])->name('loginProcess')->middleware('guest');
+Route::get('login', [LoginController::class, 'index'])->name('login')->middleware('not-login');
+Route::post('login', [LoginController::class, 'login'])->name('loginProcess')->middleware('not-login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
