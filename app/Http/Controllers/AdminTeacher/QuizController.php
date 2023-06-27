@@ -15,11 +15,8 @@ class QuizController extends Controller
      */
     public function index()
     {
-        // $quizzes = Quiz::where('quiz_category', auth()->teacher()->school()->school_category)->get();
-        // $quizzes = Quiz::all();
         return view("admin-teacher.quiz.index", [
             "title" => "Quiz",
-            // "quizzes" => $quizzes,
         ]);
     }
 }

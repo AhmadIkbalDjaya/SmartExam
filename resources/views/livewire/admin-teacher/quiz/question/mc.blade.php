@@ -58,11 +58,21 @@
                 <div class="col-2">
                   <div class="row h-100 align-items-center">
                     <div class="col-md-12">
-                      <a href="{{ route('admin.question.edit', ['quiz' => $quiz->id, 'question' => $question->id]) }}">
-                        <button type="button" class="btn btn-primary my-1">
-                          <i class="bi bi-pen"></i>
-                        </button>
-                      </a>
+                      @if (Auth::guard('user')->check())
+                        <a
+                          href="{{ route('admin.question.edit', ['quiz' => $quiz->id, 'question' => $question->id]) }}">
+                          <button type="button" class="btn btn-primary my-1">
+                            <i class="bi bi-pen"></i>
+                          </button>
+                        </a>
+                      @elseif (Auth::guard('teacher')->check())
+                        <a
+                          href="{{ route('teacher.question.edit', ['quiz' => $quiz->id, 'question' => $question->id]) }}">
+                          <button type="button" class="btn btn-primary my-1">
+                            <i class="bi bi-pen"></i>
+                          </button>
+                        </a>
+                      @endif
                       <button type="button" wire:click="setField({{ $question->id }})" class="btn btn-primary my-1"
                         data-bs-toggle="modal" data-bs-target="#deleteModal">
                         <i class="bi bi-trash-fill"></i>
@@ -89,17 +99,6 @@
                 <label for="question">Pertanyaan</label>
                 <div wire:ignore>
                   <textarea wire:model="question" name="question" id="question" rows="10" cols="80">{{ $question }}</textarea>
-                  {{-- <script>
-                    $(document).ready(function() {
-                      const question = CKEDITOR.replace('question');
-                      question.on('change', function(event) {
-                        @this.set('question', event.editor.getData());
-                      })
-                      $('#addQuestion').click(function(event) {
-                        CKEDITOR.instances["question"].setData('');
-                      })
-                    })
-                  </script> --}}
                 </div>
                 @error('question')
                   <div class="text-danger">
@@ -111,12 +110,6 @@
                 <div wire:ignore>
                   <label for="optionA">Jawaban A</label>
                   <textarea name="optionA" id="optionA" rows="10" cols="80"></textarea>
-                  {{-- <script>
-                    const optionA = CKEDITOR.replace('optionA');
-                    optionA.on('change', function(event) {
-                      @this.set('optionA', event.editor.getData());
-                    });
-                  </script> --}}
                 </div>
                 @error('optionA')
                   <div class="text-danger">
@@ -128,12 +121,6 @@
                 <div wire:ignore>
                   <label for="optionB">Jawaban B</label>
                   <textarea name="optionB" id="optionB" rows="10" cols="80"></textarea>
-                  {{-- <script>
-                    const optionB = CKEDITOR.replace('optionB');
-                    optionB.on('change', function(event) {
-                      @this.set('optionB', event.editor.getData());
-                    });
-                  </script> --}}
                 </div>
                 @error('optionB')
                   <div class="text-danger">
@@ -145,12 +132,6 @@
                 <div wire:ignore>
                   <label for="optionC">Jawaban C</label>
                   <textarea name="optionC" id="optionC" rows="10" cols="80"></textarea>
-                  {{-- <script>
-                    const optionC = CKEDITOR.replace('optionC');
-                    optionC.on('change', function(event) {
-                      @this.set('optionC', event.editor.getData());
-                    });
-                  </script> --}}
                 </div>
                 @error('optionC')
                   <div class="text-danger">
@@ -162,12 +143,6 @@
                 <div wire:ignore>
                   <label for="optionD">Jawaban D</label>
                   <textarea name="optionD" id="optionD" rows="10" cols="80"></textarea>
-                  {{-- <script>
-                    const optionD = CKEDITOR.replace('optionD');
-                    optionD.on('change', function(event) {
-                      @this.set('optionD', event.editor.getData());
-                    });
-                  </script> --}}
                 </div>
                 @error('optionD')
                   <div class="text-danger">
@@ -179,12 +154,6 @@
                 <div wire:ignore>
                   <label for="optionE">Jawaban E</label>
                   <textarea name="optionE" id="optionE" rows="10" cols="80"></textarea>
-                  {{-- <script>
-                    const optionE = CKEDITOR.replace('optionE');
-                    optionE.on('change', function(event) {
-                      @this.set('optionE', event.editor.getData());
-                    });
-                  </script> --}}
                 </div>
                 @error('optionE')
                   <div class="text-danger">

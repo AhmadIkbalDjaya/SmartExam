@@ -46,11 +46,21 @@
                 <div class="col-2">
                   <div class="row h-100 align-items-center">
                     <div class="col-md-12">
-                      <a href="{{ route('admin.question.edit', ['quiz' => $quiz->id, 'question' => $question->id]) }}">
-                        <button type="button" class="btn btn-primary my-1">
-                          <i class="bi bi-pen"></i>
-                        </button>
-                      </a>
+                      @if (Auth::guard('user')->check())
+                        <a
+                          href="{{ route('admin.question.edit', ['quiz' => $quiz->id, 'question' => $question->id]) }}">
+                          <button type="button" class="btn btn-primary my-1">
+                            <i class="bi bi-pen"></i>
+                          </button>
+                        </a>
+                      @elseif (Auth::guard('teacher')->check())
+                        <a
+                          href="{{ route('teacher.question.edit', ['quiz' => $quiz->id, 'question' => $question->id]) }}">
+                          <button type="button" class="btn btn-primary my-1">
+                            <i class="bi bi-pen"></i>
+                          </button>
+                        </a>
+                      @endif
                       <button type="button" wire:click="setField({{ $question->id }})" class="btn btn-primary my-1"
                         data-bs-toggle="modal" data-bs-target="#deleteModal">
                         <i class="bi bi-trash-fill"></i>

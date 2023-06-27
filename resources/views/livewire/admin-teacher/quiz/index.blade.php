@@ -48,9 +48,21 @@
                               @endif
                             </td>
                             <td>
-                              <a href="{{ route('admin.question.index', ['quiz' => $quiz->id]) }}"
-                                style=" border: none;background: none; padding: 0"><span
-                                  class="badge text-bg-primary">Tambah Soal</span></a>
+                              @if (Auth::guard('user')->check())
+                                <a href="{{ route('admin.question.index', ['quiz' => $quiz->id]) }}"
+                                  style=" border: none;background: none; padding: 0">
+                                  <span class="badge text-bg-primary">
+                                    Tambah Soal
+                                  </span>
+                                </a>
+                              @elseif (Auth::guard('teacher')->check())
+                                <a href="{{ route('teacher.question.index', ['quiz' => $quiz->id]) }}"
+                                  style=" border: none;background: none; padding: 0">
+                                  <span class="badge text-bg-primary">
+                                    Tambah Soal
+                                  </span>
+                                </a>
+                              @endif
                             </td>
                             <td>
                               <button style=" border: none;background: none; padding: 0">

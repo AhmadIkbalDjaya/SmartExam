@@ -11,11 +11,9 @@ class QuestionController extends Controller
 {
     public function index(Quiz $quiz)
     {
-        // $questions = Question::where('quiz_id', $quiz->id)->get();
         $viewData = [
             "title" => "Tambah Soal Quiz",
             "quiz" => $quiz,
-            // "questions" => $questions,
         ];
 
         if ($quiz->quiz_type == "MC") {

@@ -152,7 +152,13 @@
                       </div>
                       <div class="row my-3">
                         <div class="col-md-12 d-flex justify-content-between">
-                          <a href="{{ route('admin.question.index', ['quiz'=>$quiz->id]) }}" class="btn btn-primary">Kembali</a>
+                          @if (Auth::guard('user')->check())
+                            <a href="{{ route('admin.question.index', ['quiz' => $quiz->id]) }}"
+                              class="btn btn-primary">Kembali</a>
+                          @elseif (Auth::guard('teacher')->check())
+                            <a href="{{ route('teacher.question.index', ['quiz' => $quiz->id]) }}"
+                              class="btn btn-primary">Kembali</a>
+                          @endif
                           <button type="submit" id="addQuestion" class="btn btn-primary">Simpan</button>
                         </div>
                       </div>
@@ -194,5 +200,5 @@
         @this.set('optionE', event.editor.getData());
       });
     })
-    </script>
+  </script>
 </div>

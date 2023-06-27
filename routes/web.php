@@ -41,7 +41,7 @@ Route::middleware(['auth:user', 'user'])->group(function () {
         Route::get('quiz/{quiz}/question/{question}/edit', [QuestionController::class, 'edit'])->name('admin.question.edit');
         Route::get('recap', [RecapController::class, 'index'])->name('admin.recap.index');
         Route::get('recap/quiz/{quiz}', [RecapController::class, 'showQuizRecap'])->name('admin.recap.quiz.index');
-        Route::get('/recap/quiz/{quiz}/print', [RecapController::class, "printRecap"])->name('admin.recap.quiz.print');
+        Route::get('recap/quiz/{quiz}/print', [RecapController::class, "printRecap"])->name('admin.recap.quiz.print');
         Route::get('profile', [ProfileController::class, 'index'])->name('admin.profile.index');
     });
 });
@@ -52,9 +52,10 @@ Route::middleware(['auth:teacher', 'teacher'])->group(function () {
         Route::get('student', [StudentController::class, 'index'])->name('teacher.student.index');
         Route::get('quiz', [QuizController::class, 'index'])->name('teacher.quiz.index');
         Route::get('quiz/{quiz}/question', [QuestionController::class, 'index'])->name('teacher.question.index');
+        Route::get('quiz/{quiz}/question/{question}/edit', [QuestionController::class, 'edit'])->name('teacher.question.edit');
         Route::get('recap', [RecapController::class, 'index'])->name('teacher.recap.index');
         Route::get('recap/quiz/{quiz}', [RecapController::class, 'showQuizRecap'])->name('teacher.recap.quiz.index');
-        Route::get('/recap/quiz/{quiz}/print', [RecapController::class, "printRecap"])->name('teacher.recap.quiz.print');
+        Route::get('recap/quiz/{quiz}/print', [RecapController::class, "printRecap"])->name('teacher.recap.quiz.print');
         Route::get('profile', [ProfileController::class, 'index'])->name('teacher.profile.index');
     });
 });
@@ -64,7 +65,6 @@ Route::middleware(['auth:student', 'student'])->group(function () {
     Route::get('quiz', [StudentQuizController::class, 'index'])->name('student.quiz.index');
     Route::get('profile', [StudentProfileController::class, 'index'])->name('student.profile.index');
     Route::get('quiz-work/{quiz:quiz_code}', [StudentQuizWorkController::class, 'index'])->name('student.quiz-work.index');
-    // Route::get('quiz-work/{quiz}', fn () => view('student.question.index', ["title" => "question"]))->name('student.quiz-work.index');
 });
 
 Route::get('login', [LoginController::class, 'index'])->name('login')->middleware('not-login');
