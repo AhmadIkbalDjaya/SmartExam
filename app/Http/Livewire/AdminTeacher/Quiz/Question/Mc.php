@@ -57,8 +57,6 @@ class Mc extends Component
                 "is_correct" => $correct,
             ]);
         }
-        // if ($question) {
-        // }
         $this->dispatchBrowserEvent('storeSuccess');
         session()->flash("success", "Soal berhasil ditambahkan");
         $this->resetField();

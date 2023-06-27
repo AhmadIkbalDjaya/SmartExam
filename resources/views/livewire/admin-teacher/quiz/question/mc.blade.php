@@ -62,12 +62,7 @@
                         <button type="button" class="btn btn-primary my-1">
                           <i class="bi bi-pen"></i>
                         </button>
-
                       </a>
-                      {{-- <button type="button" wire:click="setField({{ $question->id }})"
-                        class="btn btn-primary my-1 editModalButton" data-bs-toggle="modal" data-bs-target="#editModal">
-                        <i class="bi bi-pen"></i>
-                      </button> --}}
                       <button type="button" wire:click="setField({{ $question->id }})" class="btn btn-primary my-1"
                         data-bs-toggle="modal" data-bs-target="#deleteModal">
                         <i class="bi bi-trash-fill"></i>
@@ -264,128 +259,6 @@
         </div>
       </form>
 
-      <!-- Modal Edit Soal-->
-      {{-- <form wire:submit.prevent='update({{ $question_id }})' action="" method="POST">
-        <div wire:ignore.self class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editModalLabel">Edit Soal Ujian</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <div wire:ignore>
-                  <label for="question2">Pertanyaan</label>
-                  <textarea id="question2" name="question2" id="question2" rows="10" cols="80"></textarea>
-                </div>
-              </div>
-              <div class="modal-body">
-                <div wire:ignore>
-                  <label for="editor8">Jawaban A</label>
-                  <textarea name="optionA" id="editor8" rows="10" cols="80"></textarea>
-                  <script>
-                    CKEDITOR.replace('editor8');
-                  </script>
-                </div>
-              </div>
-              <div class="modal-body">
-                <div wire:ignore>
-                  <label for="editor9">Jawaban B</label>
-                  <textarea name="editor9" id="editor9" rows="10" cols="80"></textarea>
-                  <script>
-                    CKEDITOR.replace('editor9');
-                  </script>
-                </div>
-              </div>
-              <div class="modal-body">
-                <div wire:ignore>
-                  <label for="editor10">Jawaban C</label>
-                  <textarea name="editor10" id="editor10" rows="10" cols="80"></textarea>
-                  <script>
-                    CKEDITOR.replace('editor10');
-                  </script>
-                </div>
-              </div>
-              <div class="modal-body">
-                <div wire:ignore>
-                  <label for="editor11">Jawaban D</label>
-                  <textarea name="editor11" id="editor11" rows="10" cols="80"></textarea>
-                  <script>
-                    CKEDITOR.replace('editor11');
-                  </script>
-                </div>
-              </div>
-              <div class="modal-body">
-                <div wire:ignore>
-                  <label for="editor12">Jawaban E</label>
-                  <textarea name="editor12" id="editor12" rows="10" cols="80"></textarea>
-                  <script>
-                    CKEDITOR.replace('editor12');
-                  </script>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <div class="container px-0">
-                  <div class="row border-bottom py-3">
-                    <p>Kunci Jawaban</p>
-                    <div class="col-2">
-                      <div class="form-check">
-                        <input wire:model="correct" value="A" class="form-check-input" type="radio"
-                          name="correct" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                          A
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-2">
-                      <div class="form-check">
-                        <input wire:model="correct" value="B" class="form-check-input" type="radio"
-                          name="correct" id="flexRadioDefault2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                          B
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-2">
-                      <div class="form-check">
-                        <input wire:model="correct" value="C" class="form-check-input" type="radio"
-                          name="correct" id="flexRadioDefault3">
-                        <label class="form-check-label" for="flexRadioDefault3">
-                          C
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-2">
-                      <div class="form-check">
-                        <input wire:model="correct" value="D" class="form-check-input" type="radio"
-                          name="correct" id="flexRadioDefault4">
-                        <label class="form-check-label" for="flexRadioDefault4">
-                          D
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-2">
-                      <div class="form-check">
-                        <input wire:model="correct" value="E" class="form-check-input" type="radio"
-                          name="correct" id="flexRadioDefault5">
-                        <label class="form-check-label" for="flexRadioDefault5">
-                          E
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row my-3">
-                    <div class="col-md-12 text-end">
-                      <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form> --}}
       <!-- Modal Hapus-->
       <div wire:ignore.self class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
         aria-hidden="true">

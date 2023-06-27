@@ -193,8 +193,6 @@
       optionE.on('change', function(event) {
         @this.set('optionE', event.editor.getData());
       });
-      // CKEDITOR.instances['question_body'].setData('dasda');
-      // CKEDITOR.instances['optionA'].setData('dasda');
     })
     </script>
 </div>

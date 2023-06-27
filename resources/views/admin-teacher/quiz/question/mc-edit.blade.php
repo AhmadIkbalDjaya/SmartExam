@@ -15,7 +15,6 @@
   @endif
   @include('components.spasi')
   <div class="page-wrapper">
-    {{-- <livewire:admin-teacher.quiz.question.edit :quiz="$quiz"> --}}
     <livewire:admin-teacher.quiz.question.mc-edit :quiz="$quiz" :question="$question">
       <footer class="footer text-center">
         © 2023 CBT Online by <a
