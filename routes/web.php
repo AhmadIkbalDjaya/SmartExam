@@ -38,6 +38,7 @@ Route::middleware(['auth:user', 'user'])->group(function () {
         Route::get('student', [StudentController::class, 'index'])->name('admin.student.index');
         Route::get('quiz', [QuizController::class, 'index'])->name('admin.quiz.index');
         Route::get('quiz/{quiz}/question', [QuestionController::class, 'index'])->name('admin.question.index');
+        Route::get('quiz/{quiz}/question/{question}/edit', [QuestionController::class, 'edit'])->name('admin.question.edit');
         Route::get('recap', [RecapController::class, 'index'])->name('admin.recap.index');
         Route::get('recap/quiz/{quiz}', [RecapController::class, 'showQuizRecap'])->name('admin.recap.quiz.index');
         Route::get('/recap/quiz/{quiz}/print', [RecapController::class, "printRecap"])->name('admin.recap.quiz.print');

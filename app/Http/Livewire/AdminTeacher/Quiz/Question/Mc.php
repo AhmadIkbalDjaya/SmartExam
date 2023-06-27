@@ -12,19 +12,9 @@ class Mc extends Component
     public $quiz;
 
     public $question_id, $quiz_id, $question;
-    public $question2;
     public $optionA, $optionB, $optionC, $optionD, $optionE;
     public $correct;
-    // public $aaa = "testestessss";
 
-    // public function booted() {
-    //     $this->question2 = "ok";
-    //     // $this->setField($this->question_id);
-    // }
-
-    public function hydrate() {
-        $this->question2 = "bisa";
-    }
     public function render()
     {
         $questions = Question::where('quiz_id', $this->quiz->id)->get();
@@ -75,19 +65,6 @@ class Mc extends Component
         $this->dispatchBrowserEvent("close-modal");
     }
 
-    // function edit(Question $question)
-    // {
-    //     // dd("tes");
-    //     $this->setField($question);
-    //     // dd($this->optionA);
-    // }
-
-    function update(Question $question)
-    {
-        // dd($question);
-        // dd("ok $question->id");
-    }
-
     function destroy(Question $question)
     {
         $question->delete();
@@ -122,6 +99,5 @@ class Mc extends Component
                 $this->correct = $option->option;
             }
         }
-        // dd($this);
     }
 }

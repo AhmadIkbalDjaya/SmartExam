@@ -28,7 +28,8 @@
             <div class="row p-3 card-header shadow-sm">
               <div class="col-md-12">
                 <h4 class="py-3">Daftar Soal Ujian</h4>
-                <button type="button" id="createModalButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+                <button type="button" id="createModalButton" class="btn btn-primary" data-bs-toggle="modal"
+                  data-bs-target="#createModal">
                   Tambah Soal
                 </button>
               </div>
@@ -57,10 +58,16 @@
                 <div class="col-2">
                   <div class="row h-100 align-items-center">
                     <div class="col-md-12">
-                      <button type="button" wire:click="setField({{ $question->id }})"
+                      <a href="{{ route('admin.question.edit', ['quiz' => $quiz->id, 'question' => $question->id]) }}">
+                        <button type="button" class="btn btn-primary my-1">
+                          <i class="bi bi-pen"></i>
+                        </button>
+
+                      </a>
+                      {{-- <button type="button" wire:click="setField({{ $question->id }})"
                         class="btn btn-primary my-1 editModalButton" data-bs-toggle="modal" data-bs-target="#editModal">
                         <i class="bi bi-pen"></i>
-                      </button>
+                      </button> --}}
                       <button type="button" wire:click="setField({{ $question->id }})" class="btn btn-primary my-1"
                         data-bs-toggle="modal" data-bs-target="#deleteModal">
                         <i class="bi bi-trash-fill"></i>
@@ -258,7 +265,7 @@
       </form>
 
       <!-- Modal Edit Soal-->
-      <form wire:submit.prevent='update({{ $question_id }})' action="" method="POST">
+      {{-- <form wire:submit.prevent='update({{ $question_id }})' action="" method="POST">
         <div wire:ignore.self class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel"
           aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -269,12 +276,8 @@
               </div>
               <div class="modal-body">
                 <div wire:ignore>
-                  {{-- {{ $question2 }} --}}
                   <label for="question2">Pertanyaan</label>
                   <textarea id="question2" name="question2" id="question2" rows="10" cols="80"></textarea>
-                  {{-- <script>
-                    CKEDITOR.replace('question2');
-                  </script> --}}
                 </div>
               </div>
               <div class="modal-body">
@@ -382,7 +385,7 @@
             </div>
           </div>
         </div>
-      </form>
+      </form> --}}
       <!-- Modal Hapus-->
       <div wire:ignore.self class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
         aria-hidden="true">
@@ -428,30 +431,13 @@
       optionE.on('change', function(event) {
         @this.set('optionE', event.editor.getData());
       });
-      $("#createModalButton").click(function (event) {
-        // console.log("dadsasdada");
+      $("#createModalButton").click(function(event) {
         CKEDITOR.instances['question'].setData('');
         CKEDITOR.instances['optionA'].setData('');
         CKEDITOR.instances['optionB'].setData('');
         CKEDITOR.instances['optionC'].setData('');
         CKEDITOR.instances['optionD'].setData('');
         CKEDITOR.instances['optionE'].setData('');
-      });
-      // $("#ayo").click(function (event) {
-      //   console.log("ayolah");
-      //   CKEDITOR.instances['question2'].setData("oooooooooooo");
-      //   // $("#question2").text(`sdas`)
-      // });
-      // window.addEventListener('storeSuccess', event => {
-      //   CKEDITOR.instances["question"].setData('');
-      //   CKEDITOR.instances["optionA"].setData('');
-      //   CKEDITOR.instances["optionB"].setData('');
-      //   CKEDITOR.instances["optionC"].setData('');
-      //   CKEDITOR.instances["optionD"].setData('');
-      //   CKEDITOR.instances["optionE"].setData('');
-      // });
-      $('.editModalButton').click(function(event) {
-        CKEDITOR.instances["question2"].setData("sada");
       });
 
       const question2 = CKEDITOR.replace('question2');

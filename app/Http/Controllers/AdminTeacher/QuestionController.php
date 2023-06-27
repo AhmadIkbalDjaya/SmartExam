@@ -24,4 +24,18 @@ class QuestionController extends Controller
             return view('admin-teacher.quiz.question.essay', $viewData);
         }
     }
+
+    public function edit(Quiz $quiz, Question $question)
+    {
+        $viewData = [
+            "title" => "Edit Soal Quiz",
+            "quiz" => $quiz,
+            "question" => $question,
+        ];
+        if ($quiz->quiz_type == "MC") {
+            return view('admin-teacher.quiz.question.mc-edit', $viewData);
+        } elseif ($quiz->quiz_type == "ES") {
+            return view('admin-teacher.quiz.question.essay-edit', $viewData);
+        }
+    }
 }
