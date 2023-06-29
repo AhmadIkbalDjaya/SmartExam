@@ -122,11 +122,11 @@
                     <div class="text-center text-success">
                       Telah Dikerjakan
                     </div>
-                  @elseif (\Carbon\Carbon::now()->isBefore(\Carbon\Carbon::parse($quiz->start_time)))
+                  @elseif (\Carbon\Carbon::now()->isBefore(\Carbon\Carbon::parse($start_time)))
                     <div class="text-center text-danger">
                       Quiz Belum di Mulai
                     </div>
-                  @elseif (\Carbon\Carbon::now()->isAfter(\Carbon\Carbon::parse($quiz->end_time)))
+                  @elseif (\Carbon\Carbon::now()->isAfter(\Carbon\Carbon::parse($end_time)))
                     <div class="text-center text-danger">
                       Quiz sudah berakhir
                     </div>
