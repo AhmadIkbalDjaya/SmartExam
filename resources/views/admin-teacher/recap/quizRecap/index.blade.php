@@ -43,5 +43,6 @@
   @push('script')
     <script src="{{ asset('/js/alerts.js') }}"></script>
     <script src="{{ asset('/js/password.js') }}"></script>
+    <script src="{{ asset('/js/modal.js') }}"></script>
   @endpush
 @endsection
