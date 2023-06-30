@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Quiz;
+use App\Models\Student;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,12 +15,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('quiz_students', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Quiz::class);
-            $table->longText('question');
-            // $table->enum('question_type', ['MC', 'ES']);
-            $table->enum('correct_answer', ['A', 'B', 'C', 'D', 'E'])->nullable();
+            $table->foreignIdFor(Student::class);
+            $table->integer('score')->unsigned()->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('quiz_students');
     }
 };

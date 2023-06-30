@@ -39,7 +39,7 @@
                   <div class="col-1 text-center">
                     {{ $loop->iteration }}
                   </div>
-                  <div class="col-11 px-0">
+                  <div class="col-11 px-0 overflow-auto">
                     {!! $question->question !!}
                   </div>
                 </div>
@@ -118,7 +118,11 @@
   </section>
   <script>
     $(document).ready(function() {
-      const question = CKEDITOR.replace('question');
+      // const question = CKEDITOR.replace('question');
+      const question = CKEDITOR.replace('question', {
+        filebrowserUploadUrl: "{{ route('ckUpload', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form',
+      });
       question.on('change', function(event) {
         @this.set('question', event.editor.getData());
       });

@@ -40,12 +40,14 @@
                   <div class="col-1 text-center">
                     {{ $loop->iteration }}.
                   </div>
-                  <div class="col-11 px-0">
+                  <div class="col-11 px-0 overflow-auto">
                     {!! $question->question !!}
                   </div>
                   <ol type="A">
                     @foreach ($question->option as $option)
-                      <li>{!! $option->option_body !!}</li>
+                      <li class="overflow-auto">
+                        {!! $option->option_body !!}
+                      </li>
                     @endforeach
                   </ol>
                   <div>
@@ -249,27 +251,45 @@
   </section>
   <script>
     $(document).ready(function() {
-      const question = CKEDITOR.replace('question');
+      const question = CKEDITOR.replace('question', {
+        filebrowserUploadUrl: "{{ route('ckUpload', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form',
+      });
       question.on('change', function(event) {
         @this.set('question', event.editor.getData());
       });
-      const optionA = CKEDITOR.replace('optionA');
+      const optionA = CKEDITOR.replace('optionA', {
+        filebrowserUploadUrl: "{{ route('ckUpload', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form',
+      });
       optionA.on('change', function(event) {
         @this.set('optionA', event.editor.getData());
       });
-      const optionB = CKEDITOR.replace('optionB');
+      const optionB = CKEDITOR.replace('optionB', {
+        filebrowserUploadUrl: "{{ route('ckUpload', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form',
+      });
       optionB.on('change', function(event) {
         @this.set('optionB', event.editor.getData());
       });
-      const optionC = CKEDITOR.replace('optionC');
+      const optionC = CKEDITOR.replace('optionC', {
+        filebrowserUploadUrl: "{{ route('ckUpload', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form',
+      });
       optionC.on('change', function(event) {
         @this.set('optionC', event.editor.getData());
       });
-      const optionD = CKEDITOR.replace('optionD');
+      const optionD = CKEDITOR.replace('optionD', {
+        filebrowserUploadUrl: "{{ route('ckUpload', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form',
+      });
       optionD.on('change', function(event) {
         @this.set('optionD', event.editor.getData());
       });
-      const optionE = CKEDITOR.replace('optionE');
+      const optionE = CKEDITOR.replace('optionE', {
+        filebrowserUploadUrl: "{{ route('ckUpload', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form',
+      });
       optionE.on('change', function(event) {
         @this.set('optionE', event.editor.getData());
       });
@@ -280,11 +300,6 @@
         CKEDITOR.instances['optionC'].setData('');
         CKEDITOR.instances['optionD'].setData('');
         CKEDITOR.instances['optionE'].setData('');
-      });
-
-      const question2 = CKEDITOR.replace('question2');
-      question2.on('change', function(event) {
-        @this.set('question', event.editor.getData(""));
       });
     })
   </script>

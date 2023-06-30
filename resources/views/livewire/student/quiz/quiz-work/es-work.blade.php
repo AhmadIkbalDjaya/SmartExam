@@ -27,7 +27,7 @@
                           hide-question @endif
                         ">
                     <div class="col-md-12 p-4">
-                      <div>
+                      <div class="overflow-auto">
                         {!! $question->question !!}
                       </div>
                       @foreach ($question->option as $option)

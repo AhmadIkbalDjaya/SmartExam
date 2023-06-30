@@ -23,7 +23,5 @@
     @elseif ($quiz->quiz_type == 'ES')
       <livewire:student.quiz.quiz-work.es-work :quiz="$quiz" />
     @endif
-    {{-- <livewire:student.quiz.quiz-work.index :quiz="$quiz" /> --}}
-
   </div>
 @endsection

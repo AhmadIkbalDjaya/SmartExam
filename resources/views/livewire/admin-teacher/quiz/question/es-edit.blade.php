@@ -58,7 +58,10 @@
   </section>
   <script>
     $(document).ready(function() {
-      const question_body = CKEDITOR.replace('question_body');
+      const question_body = CKEDITOR.replace('question_body', {
+        filebrowserUploadUrl: "{{ route('ckUpload', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form',
+      });
       question_body.on('change', function(event) {
         @this.set('question_body', event.editor.getData());
       });

@@ -2,10 +2,11 @@
 
 @push('style')
   <link rel="stylesheet" href="{{ asset('/css/table.css') }}">
+  <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 @endpush
-@push('style')
+{{-- @push('style')
   <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
-@endpush
+@endpush --}}
 
 @section('body')
   @if (Auth::guard('user')->check())

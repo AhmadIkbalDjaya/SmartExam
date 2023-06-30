@@ -175,27 +175,45 @@
   </section>
   <script>
     $(document).ready(function() {
-      const question_body = CKEDITOR.replace('question_body');
+      const question_body = CKEDITOR.replace('question_body', {
+        filebrowserUploadUrl: "{{ route('ckUpload', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form',
+      });
       question_body.on('change', function(event) {
         @this.set('question_body', event.editor.getData());
       });
-      const optionA = CKEDITOR.replace('optionA');
+      const optionA = CKEDITOR.replace('optionA', {
+        filebrowserUploadUrl: "{{ route('ckUpload', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form',
+      });
       optionA.on('change', function(event) {
         @this.set('optionA', event.editor.getData());
       });
-      const optionB = CKEDITOR.replace('optionB');
+      const optionB = CKEDITOR.replace('optionB', {
+        filebrowserUploadUrl: "{{ route('ckUpload', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form',
+      });
       optionB.on('change', function(event) {
         @this.set('optionB', event.editor.getData());
       });
-      const optionC = CKEDITOR.replace('optionC');
+      const optionC = CKEDITOR.replace('optionC', {
+        filebrowserUploadUrl: "{{ route('ckUpload', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form',
+      });
       optionC.on('change', function(event) {
         @this.set('optionC', event.editor.getData());
       });
-      const optionD = CKEDITOR.replace('optionD');
+      const optionD = CKEDITOR.replace('optionD', {
+        filebrowserUploadUrl: "{{ route('ckUpload', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form',
+      });
       optionD.on('change', function(event) {
         @this.set('optionD', event.editor.getData());
       });
-      const optionE = CKEDITOR.replace('optionE');
+      const optionE = CKEDITOR.replace('optionE', {
+        filebrowserUploadUrl: "{{ route('ckUpload', ['_token' => csrf_token()]) }}",
+        filebrowserUploadMethod: 'form',
+      });
       optionE.on('change', function(event) {
         @this.set('optionE', event.editor.getData());
       });

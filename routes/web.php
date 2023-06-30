@@ -13,6 +13,7 @@ use App\Http\Controllers\Student\StudentQuizController;
 use App\Http\Controllers\AdminTeacher\StudentController;
 use App\Http\Controllers\AdminTeacher\QuestionController;
 use App\Http\Controllers\AdminTeacher\DashboardController;
+use App\Http\Controllers\CkController;
 use App\Http\Controllers\Student\StudentProfileController;
 use App\Http\Controllers\Student\StudentQuizWorkController;
 
@@ -70,3 +71,5 @@ Route::middleware(['auth:student', 'student'])->group(function () {
 Route::get('login', [LoginController::class, 'index'])->name('login')->middleware('not-login');
 Route::post('login', [LoginController::class, 'login'])->name('loginProcess')->middleware('not-login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::post('ckUpload', [CkController::class, 'ckUpload'])->name('ckUpload');
