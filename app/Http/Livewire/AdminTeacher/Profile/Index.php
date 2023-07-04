@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\AdminTeacher\Profile;
 
+use App\Models\Teacher;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
@@ -28,10 +29,10 @@ class Index extends Component
         $validated = $this->validate([
             "password" => "required|min:8|confirmed"
         ]);
-        $validated["password"] = Hash::make($validated["password"]);
         if (Auth::guard('teacher')->check()) {
-            $user = User::find(Auth::guard('teacher')->user()->id);
+            $user = Teacher::find(Auth::guard('teacher')->user()->id);
         } elseif(Auth::guard('user')->check()) {
+            $validated["password"] = Hash::make($validated["password"]);
             $user = User::find(Auth::guard('user')->user()->id);
         }
         $user->update($validated);

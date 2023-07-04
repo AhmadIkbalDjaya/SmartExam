@@ -51,7 +51,7 @@ class Index extends Component
         $validated = $this->validate([
             "password" => "required|min:8|confirmed",
         ]);
-        $validated["password"] = Hash::make($validated["password"]);
+        // $validated["password"] = Hash::make($validated["password"]);
         $user = Student::find(Auth::guard('student')->user()->id);
         $user->update($validated);
         session()->flash("success", "Password berhasil diubah");

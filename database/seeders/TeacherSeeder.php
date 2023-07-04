@@ -19,7 +19,8 @@ class TeacherSeeder extends Seeder
         for ($i = 1; $i <= 10; $i++) {
             Teacher::create([
                 'username' => 'teacher' . $i,
-                'password' => bcrypt('password' . $i),
+                // 'password' => bcrypt('password' . $i),
+                'password' => 'password' . $i,
                 'school_id' => random_int(1, 5),
             ]);
         }

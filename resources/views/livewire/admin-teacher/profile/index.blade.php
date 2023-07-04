@@ -74,11 +74,11 @@
                     value="{{ old('password_confirmation') }}"
                     class="form-control
                       @error('password_confirmation') is-invalid @enderror"
-                    id="passwordInput">
+                    id="passwordInput2">
                   <span class="input-group-append">
-                    <span class="input-group-text toggle-password" id="togglePassword" style="cursor: pointer">
-                      <i class="bi bi-eye-fill" alt="Show Password" id="eyeClosedIcon"></i>
-                      <i class="bi bi-eye-slash" alt="Hide Password" id="eyeOpenIcon" style="display: none;"></i>
+                    <span class="input-group-text toggle-password" id="togglePassword2" style="cursor: pointer">
+                      <i class="bi bi-eye-fill" alt="Show Password" id="eyeClosedIcon2"></i>
+                      <i class="bi bi-eye-slash" alt="Hide Password" id="eyeOpenIcon2" style="display: none;"></i>
                     </span>
                   </span>
                   @error('password_confirmation')
