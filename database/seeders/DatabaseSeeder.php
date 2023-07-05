@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(SchoolSeeder::class);
-        $this->call(TeacherSeeder::class);
-        $this->call(StudentSeeder::class);
-        $this->call(QuizStudentSeeder::class);
+        // $this->call(SchoolSeeder::class);
+        // $this->call(TeacherSeeder::class);
+        // $this->call(StudentSeeder::class);
+        // $this->call(QuizStudentSeeder::class);
         User::create([
             "username" => "momentum",
             "password" => bcrypt('momentum45'),
