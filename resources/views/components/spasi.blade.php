@@ -1,4 +1,4 @@
-<div class="container" style="padding-bottom: 50px">
+<div class="container" style="padding-bottom: 80px">
     <div class="row">
       <div class="col-12">
   

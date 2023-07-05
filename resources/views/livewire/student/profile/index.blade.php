@@ -3,7 +3,7 @@
   @include('components.alerts')
   <!-- Profile -->
   <section id="headerProduk">
-    <div class="container-fluid card py-4 h-100">
+    <div class="container-fluid px-0 card py-4 h-100">
       <div class="row">
         <div class="col-md-6">
           <div class="container-fluid">
@@ -73,7 +73,7 @@
 
   {{-- recap hasil ujian --}}
   <section id="header">
-    <div class="container-fluid card py-4 h-100">
+    <div class="container-fluid px-0 card py-4 h-100">
       <div class="row">
         <div class="col-md-12">
           <div class="container-fluid">
@@ -85,40 +85,42 @@
             </div>
             <div class="row">
               <div class="col-md-12 p-4">
-                <table class="table">
-                  <thead>
-                    <tr class="text-center">
-                      <th scope="col">No</th>
-                      <th scope="col">Nama Quiz</th>
-                      <th scope="col">Soal</th>
-                      <th scope="col">Nilai</th>
-                      <th scope="col">Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody class="table-group-divider">
-                    @foreach ($quizStudents as $quizStudent)
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
                       <tr class="text-center">
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $quizStudent->quiz->quiz_name }}</td>
-                        <td>
-                          @if ($quizStudent->quiz->quiz_type == 'MC')
-                            Pilihan Ganda
-                          @else
-                            Essay
-                          @endif
-                        </td>
-                        <td>{{ $quizStudent->score }}</td>
-                        <td>
-                          <button style=" border: none;background: none; padding: 0">
-                            <span wire:click="setField({{ $quizStudent->id }})" class="badge text-bg-info" data-bs-toggle="modal" data-bs-target="#showModal">
-                              Informasi
-                            </span>
-                          </button>
-                        </td>
+                        <th scope="col">No</th>
+                        <th scope="col">Nama Quiz</th>
+                        <th scope="col">Soal</th>
+                        <th scope="col">Nilai</th>
+                        <th scope="col">Aksi</th>
                       </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody class="table-group-divider">
+                      @foreach ($quizStudents as $quizStudent)
+                        <tr class="text-center">
+                          <th scope="row">{{ $loop->iteration }}</th>
+                          <td>{{ $quizStudent->quiz->quiz_name }}</td>
+                          <td>
+                            @if ($quizStudent->quiz->quiz_type == 'MC')
+                              Pilihan Ganda
+                            @else
+                              Essay
+                            @endif
+                          </td>
+                          <td>{{ $quizStudent->score }}</td>
+                          <td>
+                            <button style=" border: none;background: none; padding: 0">
+                              <span wire:click="setField({{ $quizStudent->id }})" class="badge text-bg-info" data-bs-toggle="modal" data-bs-target="#showModal">
+                                Informasi
+                              </span>
+                            </button>
+                          </td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>

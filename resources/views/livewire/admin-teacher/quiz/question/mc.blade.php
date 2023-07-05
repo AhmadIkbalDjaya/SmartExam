@@ -36,17 +36,26 @@
             </div>
             @foreach ($questions as $question)
               <div class="row card-body shadow-sm">
-                <div class="col-10 row">
-                  <div class="col-1 text-center">
-                    {{ $loop->iteration }}.
-                  </div>
-                  <div class="col-11 px-0 overflow-auto">
-                    {!! $question->question !!}
+                <div class="col-10">
+                  <div class="d-flex">
+                    <div class="">
+                      {{ $loop->iteration }}.
+                    </div>
+                    <div class="overflow-auto" style="padding-left: 5px">
+                      {!! $question->question !!}
+                    </div>
                   </div>
                   <ol type="A">
                     @foreach ($question->option as $option)
-                      <li class="overflow-auto">
-                        {!! $option->option_body !!}
+                      <li class="d-flex">
+                        {{-- <div class="row"> --}}
+                          <div class="">
+                            {{ $option->option }}.
+                          </div>
+                          <div class="overflow-auto" style="padding-left: 5px">
+                            {!! $option->option_body !!}
+                          </div>
+                        {{-- </div> --}}
                       </li>
                     @endforeach
                   </ol>

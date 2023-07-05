@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentSeeder::class);
         $this->call(QuizStudentSeeder::class);
         User::create([
-            "username" => "admin",
-            "password" => bcrypt('password'),
-            "email" => "admin@gmail.com",
+            "username" => "momentum",
+            "password" => bcrypt('momentum45'),
+            "email" => "momentum066@gmail.com",
         ]);
         // \App\Models\User::factory(10)->create();
 

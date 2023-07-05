@@ -49,14 +49,14 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4">
+                {{-- <div class="col-md-4">
                   <div class="card p-3 text-center rounded-4">
                     <h5>Jumlah Data Ruangan</h5>
                     <div style="height: 80px; width: 80px; margin: auto" class="rounded-circle bg-info">
                       <h3 style="margin-top: 28px">32</h3>
                     </div>
                   </div>
-                </div>
+                </div> --}}
               </div>
             </div>
           </div>

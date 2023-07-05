@@ -5,7 +5,7 @@
 @endpush
 
 @section('body')
-  <section id="login">
+  <section id="login" style="height: 100vh">
     <div class="container-fluid h-100">
       <div class="row h-100 align-items-center">
         <div class="col-12">

@@ -6,7 +6,7 @@
     <div class="container-fluid card py-4 h-100">
       <div class="row">
         <div class="col-md-12">
-          <div class="container-fluid">
+          <div class="container-fluid p-0">
             <div class="row p-3">
               <div class="col-md-12">
                 <h3>Daftar Ujian CBT</h3>
@@ -16,39 +16,41 @@
             </div>
             <div class="row">
               <div class="col-md-12 p-4">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">No</th>
-                      <th scope="col">Nama Quiz</th>
-                      <th scope="col">Soal</th>
-                      <th scope="col">Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody class="table-group-divider">
-                    @foreach ($quizzes as $quiz)
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
                       <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $quiz->quiz_name }}</td>
-                        <td>
-                          @if ($quiz->quiz_type == 'MC')
-                            Pilihan Ganda
-                          @else
-                            Essay
-                          @endif
-                        </td>
-                        <td>
-                          <button style="border: none;background: none; padding: 0">
-                            <span wire:click="setFeild({{ $quiz->id }})" class="badge text-bg-info"
-                              data-bs-toggle="modal" data-bs-target="#showModal">
-                              Mulai Ujian
-                            </span>
-                          </button>
-                        </td>
+                        <th scope="col">No</th>
+                        <th scope="col">Nama Quiz</th>
+                        <th scope="col">Soal</th>
+                        <th scope="col">Aksi</th>
                       </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody class="table-group-divider">
+                      @foreach ($quizzes as $quiz)
+                        <tr>
+                          <th scope="row">{{ $loop->iteration }}</th>
+                          <td>{{ $quiz->quiz_name }}</td>
+                          <td>
+                            @if ($quiz->quiz_type == 'MC')
+                              Pilihan Ganda
+                            @else
+                              Essay
+                            @endif
+                          </td>
+                          <td>
+                            <button style="border: none;background: none; padding: 0">
+                              <span wire:click="setFeild({{ $quiz->id }})" class="badge text-bg-info"
+                                data-bs-toggle="modal" data-bs-target="#showModal">
+                                Mulai Ujian
+                              </span>
+                            </button>
+                          </td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -71,16 +73,16 @@
               <div class="modal-body">
                 <div class="row">
                   <div class="col-5">
-                    <div>Nama Quiz:</div>
+                    <div>Nama Quiz</div>
                   </div>
-                  <div class="col-1">:</div>
+                  <div class="col-1"></div>
                   <div class="col-6">{{ $quiz_name }}</div>
                 </div>
                 <div class="row">
                   <div class="col-5">
-                    <div>Pilih Quiz:</div>
+                    <div>Pilih Quiz</div>
                   </div>
-                  <div class="col-1">:</div>
+                  <div class="col-1"></div>
                   <div class="col-6">
                     @if ($quiz_type == 'MC')
                       Pilihan Ganda
@@ -91,30 +93,30 @@
                 </div>
                 <div class="row">
                   <div class="col-5">
-                    <div>Waktu Mulai:</div>
+                    <div>Waktu Mulai</div>
                   </div>
-                  <div class="col-1">:</div>
+                  <div class="col-1"></div>
                   <div class="col-6">{{ date('j M Y H:i', strtotime($start_time)) }}</div>
                 </div>
                 <div class="row">
                   <div class="col-5">
-                    <div>Waktu Berakhir:</div>
+                    <div>Waktu Berakhir</div>
                   </div>
-                  <div class="col-1">:</div>
+                  <div class="col-1"></div>
                   <div class="col-6">{{ date('j M Y H:i', strtotime($end_time)) }}</div>
                 </div>
                 <div class="row">
                   <div class="col-5">
-                    <div>Waktu Pengerjaan:</div>
+                    <div>Waktu Pengerjaan</div>
                   </div>
-                  <div class="col-1">:</div>
+                  <div class="col-1"></div>
                   <div class="col-6">{{ $duration }} Menit</div>
                 </div>
                 <div class="row">
                   <div class="col-5">
-                    <div>Jumlah Soal:</div>
+                    <div>Jumlah Soal</div>
                   </div>
-                  <div class="col-1">:</div>
+                  <div class="col-1"></div>
                   <div class="col-6">{{ $question_count }}</div>
                 </div>
                 <form wire:submit.prevent="startQuiz">
@@ -133,9 +135,9 @@
                   @else
                     <div class="row">
                       <div class="col-5">
-                        <div>Masukkan Kode Quiz:</div>
+                        <div>Masukkan Kode Quiz</div>
                       </div>
-                      <div class="col-1">:</div>
+                      <div class="col-1"></div>
                       <div class="col-6">
                         <div class="mb-3">
                           <input wire:model="input_quiz_code" name="input_quiz_code" type="text"
