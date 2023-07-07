@@ -45,6 +45,8 @@
                                 Pilihan Ganda
                               @elseif($quiz->quiz_type == 'ES')
                                 Essay
+                              @elseif ($quiz->quiz_type == "TF")
+                                Benar Salah
                               @endif
                             </td>
                             <td>
@@ -151,6 +153,7 @@
                                     <option selected>-</option>
                                     <option value="MC">Pilihan Ganda</option>
                                     <option value="ES">Essay</option>
+                                    <option value="TF">Benar Salah</option>
                                   </select>
                                   @error('quiz_type')
                                     <div class="invalid-feedback">
@@ -296,6 +299,7 @@
                                     <option selected>-</option>
                                     <option value="MC">Pilihan Ganda</option>
                                     <option value="ES">Essay</option>
+                                    <option value="TF">Benar Salah</option>
                                   </select>
                                   @error('quiz_type')
                                     <div class="invalid-feedback">

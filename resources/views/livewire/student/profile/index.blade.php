@@ -104,8 +104,10 @@
                           <td>
                             @if ($quizStudent->quiz->quiz_type == 'MC')
                               Pilihan Ganda
-                            @else
+                            @elseif ($quizStudent->quiz->quiz_type == "ES")
                               Essay
+                            @elseif ($quizStudent->quiz->quiz_type == "TF")
+                              Benar Salah
                             @endif
                           </td>
                           <td>{{ $quizStudent->score }}</td>

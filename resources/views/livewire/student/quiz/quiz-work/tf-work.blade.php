@@ -22,10 +22,10 @@
                 @foreach ($questions as $question)
                   <div
                     class="question-box 
-                      @if ($loop->iteration == $active_question) show-question
-                      @else
-                        hide-question @endif
-                      ">
+                        @if ($loop->iteration == $active_question) show-question
+                        @else
+                          hide-question @endif
+                        ">
                     <div class="col-md-12 p-4">
                       <div>
                         {!! $question->question !!}
@@ -37,9 +37,6 @@
                             name="question{{ $question->id }}Option{{ $option->id }}"
                             id="option{{ $option->id }}" />
                           <label class="form-check-label d-flex" for="option{{ $option->id }}">
-                            <p>
-                              {{ $option->option }}.
-                            </p>
                             <div>
                               {!! $option->option_body !!}
                             </div>
@@ -92,9 +89,9 @@
                     @foreach ($questions as $question)
                       <button wire:click='setQuestion({{ $loop->iteration }})' type="button"
                         class="btn p-0 mt-1 
-                          @if ($loop->iteration == $active_question) btn-secondary
-                          @elseif ($selectedOptions[$question->id] ?? null) btn-success
-                          @else btn-info @endif"
+                            @if ($loop->iteration == $active_question) btn-secondary
+                            @elseif ($selectedOptions[$question->id] ?? null) btn-success
+                            @else btn-info @endif"
                         style="height: 40px; width: 30px">
                         {{ $loop->iteration }}
                       </button>

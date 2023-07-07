@@ -20,6 +20,8 @@ class QuestionController extends Controller
             return view('admin-teacher.quiz.question.mc', $viewData);
         } elseif ($quiz->quiz_type == "ES") {
             return view('admin-teacher.quiz.question.essay', $viewData);
+        } elseif ($quiz->quiz_type == "TF") {
+            return view("admin-teacher.quiz.question.tf", $viewData);
         }
     }
 
@@ -34,6 +36,8 @@ class QuestionController extends Controller
             return view('admin-teacher.quiz.question.mc-edit', $viewData);
         } elseif ($quiz->quiz_type == "ES") {
             return view('admin-teacher.quiz.question.essay-edit', $viewData);
+        } elseif ($quiz->quiz_type == "TF") {
+            return view("admin-teacher.quiz.question.tf-edit", $viewData);
         }
     }
 }

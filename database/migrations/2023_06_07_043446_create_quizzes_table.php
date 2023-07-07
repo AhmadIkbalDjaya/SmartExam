@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('quiz_name');
             $table->enum('quiz_category', ['SMP', 'SMA']);
-            $table->enum('quiz_type', ['MC', 'ES']);
+            $table->enum('quiz_type', ['MC', 'ES', 'TF']);
             $table->string('quiz_code');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
