@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignIdFor(Student::class);
             $table->foreignIdFor(Question::class);
             $table->enum('answer', ['A', 'B', 'C', 'D', 'E',]);
-            $table->boolean('is_correct');
+            $table->boolean('is_correct')->default(false);
             $table->timestamps();
         });
     }

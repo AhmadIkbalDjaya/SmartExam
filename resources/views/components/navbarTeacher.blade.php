@@ -15,7 +15,13 @@
           <img src="{{ asset('/images/logo.png') }}" alt="homepage" height="60px" />
         </b>
         <span class="logo-text text-dark pt-2 w-100">
-          <h3>Admin</h3>
+          <h3 class="m-0">Teacher</h3>
+          <h6>
+            {{-- {{ Auth::guard('teacher')->user()->username }} <br> --}}
+            <span style="font-size: 10px; color: grey;">
+              {{ Auth::guard('teacher')->user()->school->school_name }}
+            </span>
+          </h6>
         </span>
 
       </a>
@@ -67,11 +73,16 @@
             <button type="button" class="btn dropdown-toggle d-flex align-items-center text-white"
               data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
               <div class="bg-primary rounded-circle me-2 d-flex align-items-center justify-content-center icn-akun"
-                style="height: 35px; width: 35px;">A</div>
+                style="height: 35px; width: 35px;">T</div>
             </button>
-            <ul class="dropdown-menu dropdown-menu-end p-0">
+            <ul class="dropdown-menu dropdown-menu-end py-2">
               <li>
-                <button class="dropdown-item" type="button">Logout</button>
+                <button class="dropdown-item p-0" type="button">
+                  <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button type="submit" class="border-0 bg-transparent ">Logout</button>
+                  </form>
+                </button>
               </li>
             </ul>
           </div>
@@ -116,7 +127,10 @@
               class="hide-menu">Profile</span></a>
         </li>
         <li class="text-center p-20 upgrade-btn">
-          <a href="" class="btn btn-danger text-white mt-4" target="_blank">Logout</a>
+          <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <button type="submit" class="btn btn-danger text-white mt-4">Logout</button>
+          </form>
         </li>
       </ul>
     </nav>

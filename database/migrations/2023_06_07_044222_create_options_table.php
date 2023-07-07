@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Question::class);
             $table->enum('option', ['A', 'B', 'C', 'D', 'E']);
-            $table->string('option_body');
+            $table->longText('option_body');
             $table->boolean('is_correct');
             $table->timestamps();
         });

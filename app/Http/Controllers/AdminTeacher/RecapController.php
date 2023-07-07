@@ -7,13 +7,20 @@ use App\Http\Controllers\Controller;
 use App\Models\Quiz;
 use App\Models\QuizStudent;
 use App\Models\School;
+use Illuminate\Support\Facades\Auth;
 
 class RecapController extends Controller
 {
     public function index() {
+        if (Auth::guard('teacher')->check()) {
+            $quizzes = Quiz::where('quiz_category', Auth::guard()->user()->school->school_category)->withCount('question')->latest()->get();
+        } else {
+            $quizzes = Quiz::withCount('question')->latest()->get();
+        }
+        
         return view("admin-teacher.recap.index", [
             "title" => "Recap Quiz",
-            "quizzes" => Quiz::withCount('question')->latest()->get(),
+            "quizzes" => $quizzes,
         ]);
     }
 

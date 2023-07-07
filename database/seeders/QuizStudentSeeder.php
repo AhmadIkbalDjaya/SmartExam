@@ -17,7 +17,7 @@ class QuizStudentSeeder extends Seeder
     {
         $quizStudents = [];
 
-        for ($i=1; $i < 10; $i++) { 
+        for ($i=1; $i < 6; $i++) { 
             $quiz_id = rand(1,2);
             $student_id = $i;
             $score = rand(0,100);

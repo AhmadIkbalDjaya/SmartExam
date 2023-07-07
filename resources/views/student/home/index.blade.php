@@ -38,7 +38,7 @@
                 <div class="col-md-4">
                   <div class="card p-4 text-center rounded-4" style="height:175px">
                     <h5>Soal Ujian CBT</h5>
-                    <a href="">
+                    <a href="{{ route('student.quiz.index') }}">
                       Soal Ujian
                     </a>
                   </div>

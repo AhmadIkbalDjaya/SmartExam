@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\AdminTeacher\Quiz;
 
 use App\Models\Quiz;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Index extends Component
@@ -13,8 +14,12 @@ class Index extends Component
 
     public function render()
     {
-        // $quizzes = Quiz::where('quiz_category', auth()->teacher()->school()->school_category)->get();
-        $quizzes = Quiz::withCount('question')->latest()->get();
+        if (Auth::guard('teacher')->check()) {
+            $quizzes = Quiz::where('quiz_category', Auth::guard('teacher')->user()->school->school_category)->get();   
+        } else {
+            $quizzes = Quiz::withCount('question')->latest()->get();
+        }
+        
         return view('livewire.admin-teacher.quiz.index', [
             "quizzes" => $quizzes,
         ]);

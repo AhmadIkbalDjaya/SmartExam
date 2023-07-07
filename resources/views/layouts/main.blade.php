@@ -12,6 +12,9 @@
   <script src="https://kit.fontawesome.com/b7b20c00b9.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"
     integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+
   {{-- CSS --}}
   <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
   @livewireStyles

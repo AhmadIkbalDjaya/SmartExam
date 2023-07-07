@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire\AdminTeacher\Profile;
 
+use App\Models\Teacher;
 use App\Models\User;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class Index extends Component
 {
@@ -26,14 +29,12 @@ class Index extends Component
         $validated = $this->validate([
             "password" => "required|min:8|confirmed"
         ]);
-        // if (auth()->user()) {
-        //     $user = auth()->user();
-        //     $user->update($validated);
-        // } else {
-        //     $teacher = auth()->teacher();
-        //     $teacher->update($validated);
-        // }
-        $user = User::find(1);
+        if (Auth::guard('teacher')->check()) {
+            $user = Teacher::find(Auth::guard('teacher')->user()->id);
+        } elseif(Auth::guard('user')->check()) {
+            $validated["password"] = Hash::make($validated["password"]);
+            $user = User::find(Auth::guard('user')->user()->id);
+        }
         $user->update($validated);
         session()->flash("success", "Password berhasil diubah");
         $this->resetField();

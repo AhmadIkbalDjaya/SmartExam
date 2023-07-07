@@ -17,8 +17,9 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Quiz::class);
-            $table->string('question');
+            $table->longText('question');
             // $table->enum('question_type', ['MC', 'ES']);
+            $table->enum('correct_answer', ['A', 'B', 'C', 'D', 'E'])->nullable();
             $table->timestamps();
         });
     }

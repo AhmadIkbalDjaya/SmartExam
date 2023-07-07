@@ -26,8 +26,8 @@ class Question extends Model
         return $this->hasMany(QuizStudentAnswer::class);
     }
 
-    public function essay_submission()
-    {
-        return $this->hasMany(EssaySubmission::class);
-    }
+    // public function essay_submission()
+    // {
+    //     return $this->hasMany(EssaySubmission::class);
+    // }
 }

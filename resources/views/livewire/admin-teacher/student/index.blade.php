@@ -236,12 +236,12 @@
                               <label for="exampleFormControlInput1" class="form-label">Password</label>
                               <div class="input-group">
                                 <input type="password" wire:model="password" name="password"
-                                  class="form-control @error('password') is-invalid @enderror" id="passwordInput">
+                                  class="form-control @error('password') is-invalid @enderror" id="passwordInput2">
                                 <span class="input-group-append">
-                                  <span class="input-group-text toggle-password" id="togglePassword"
+                                  <span class="input-group-text toggle-password" id="togglePassword2"
                                     style="cursor: pointer">
-                                    <i class="bi bi-eye-fill" alt="Show Password" id="eyeClosedIcon"></i>
-                                    <i class="bi bi-eye-slash" alt="Hide Password" id="eyeOpenIcon"
+                                    <i class="bi bi-eye-fill" alt="Show Password" id="eyeClosedIcon2"></i>
+                                    <i class="bi bi-eye-slash" alt="Hide Password" id="eyeOpenIcon2"
                                       style="display: none;"></i>
                                   </span>
                                 </span>

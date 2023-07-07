@@ -5,16 +5,15 @@ namespace App\Http\Livewire\AdminTeacher\Quiz\Question;
 use App\Models\Option;
 use Livewire\Component;
 use App\Models\Question;
+use Spatie\LaravelIgnition\Recorders\DumpRecorder\DumpHandler;
 
 class Mc extends Component
 {
     public $quiz;
 
     public $question_id, $quiz_id, $question;
-    public $question2;
     public $optionA, $optionB, $optionC, $optionD, $optionE;
     public $correct;
-    public $aaa = "testestessss";
 
     public function render()
     {
@@ -39,6 +38,7 @@ class Mc extends Component
         $question = [
             "quiz_id" => $this->quiz->id,
             "question" => $this->question,
+            "correct_answer" => $this->correct,
         ];
         $options = [
             ["option" => "A", "option_body" => $this->optionA],
@@ -57,25 +57,10 @@ class Mc extends Component
                 "is_correct" => $correct,
             ]);
         }
-        if ($question) {
-            $this->dispatchBrowserEvent('storeSuccess');
-        }
+        $this->dispatchBrowserEvent('storeSuccess');
         session()->flash("success", "Soal berhasil ditambahkan");
         $this->resetField();
         $this->dispatchBrowserEvent("close-modal");
-    }
-
-    // function edit(Question $question)
-    // {
-    //     // dd("tes");
-    //     $this->setField($question);
-    //     // dd($this->optionA);
-    // }
-
-    function update(Question $question)
-    {
-        dd($question);
-        // dd("ok $question->id");
     }
 
     function destroy(Question $question)
@@ -99,15 +84,10 @@ class Mc extends Component
 
     function setField(Question $question)
     {
-        // dd("ok");
-        // dd($question->question);
-        // dd($question->option[0]->option_body);
         $this->question_id = $question->id;
         $this->quiz_id = $question->quiz_id;
         $this->question = $question->question;
-        // $this->question2 = $question->question;
         $this->optionA = $question->option[0]->option_body;
-        // $this->optionA = "qqqqq";
         $this->optionB = $question->option[1]->option_body;
         $this->optionC = $question->option[2]->option_body;
         $this->optionD = $question->option[3]->option_body;
@@ -117,10 +97,5 @@ class Mc extends Component
                 $this->correct = $option->option;
             }
         }
-        // $this->tes();
     }
-
-    // function tes() {
-    //     dd($this->optionA);
-    // }
 }

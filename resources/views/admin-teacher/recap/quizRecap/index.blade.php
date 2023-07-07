@@ -5,8 +5,11 @@
 @endpush
 
 @section('body')
-  {{-- @include('components.navbarAdmin') --}}
-  @include('components.navbarTeacher')
+  @if (Auth::guard('user')->check())
+    @include('components.navbarAdmin')
+  @elseif (Auth::guard('teacher')->check())
+    @include('components.navbarTeacher')
+  @endif
   @include('components.spasi')
   <div class="page-wrapper">
     <div class="page-breadcrumb">
@@ -40,5 +43,6 @@
   @push('script')
     <script src="{{ asset('/js/alerts.js') }}"></script>
     <script src="{{ asset('/js/password.js') }}"></script>
+    <script src="{{ asset('/js/modal.js') }}"></script>
   @endpush
 @endsection

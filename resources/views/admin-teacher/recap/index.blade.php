@@ -5,8 +5,11 @@
 @endpush
 
 @section('body')
-  {{-- @include('components.navbarAdmin') --}}
-  @include('components.navbarTeacher')
+  @if (Auth::guard('user')->check())
+    @include('components.navbarAdmin')
+  @elseif (Auth::guard('teacher')->check())
+    @include('components.navbarTeacher')
+  @endif
   @include('components.spasi')
   <div class="page-wrapper">
     <div class="page-breadcrumb">
@@ -50,7 +53,7 @@
                                 @endif
                               </td>
                               <td class="border-1">
-                                <a href="{{ route('admin.recap.quiz.index', ["quiz" => $quiz->id]) }}"
+                                <a href="{{ route('admin.recap.quiz.index', ['quiz' => $quiz->id]) }}"
                                   style=" border: none;background: none; padding: 0">
                                   <span class="badge text-bg-primary">
                                     Lihat Rekap

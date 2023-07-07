@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Quiz::class);
             $table->foreignIdFor(Student::class);
-            $table->integer('score')->unsigned();
+            $table->integer('score')->unsigned()->nullable();
             $table->timestamps();
         });
     }

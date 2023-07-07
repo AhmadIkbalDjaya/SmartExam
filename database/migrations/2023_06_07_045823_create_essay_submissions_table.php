@@ -20,7 +20,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Quiz::class);
             $table->foreignIdFor(Student::class);
-            $table->foreignIdFor(Question::class);
+            // $table->foreignIdFor(Question::class);
             $table->string('file');
             $table->timestamps();
         });
