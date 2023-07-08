@@ -24,7 +24,27 @@ class DatabaseSeeder extends Seeder
         // $this->call(QuizStudentSeeder::class);
         User::create([
             "username" => "momentum",
-            "password" => bcrypt('momentum45'),
+            "password" => bcrypt('momentumx'),
+            "email" => "momentum066@gmail.com",
+        ]);
+        User::create([
+            "username" => "momentum1",
+            "password" => bcrypt('momentumx1'),
+            "email" => "momentum066@gmail.com",
+        ]);
+        User::create([
+            "username" => "momentum2",
+            "password" => bcrypt('momentumx2'),
+            "email" => "momentum066@gmail.com",
+        ]);
+        User::create([
+            "username" => "momentum3",
+            "password" => bcrypt('momentumx3'),
+            "email" => "momentum066@gmail.com",
+        ]);
+        User::create([
+            "username" => "momentum4",
+            "password" => bcrypt('momentumx4'),
             "email" => "momentum066@gmail.com",
         ]);
         // \App\Models\User::factory(10)->create();

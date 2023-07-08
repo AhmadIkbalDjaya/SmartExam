@@ -138,7 +138,7 @@
         }
         // countdown
         var minutes = @json($quiz->duration);
-        var seconds = 60;
+        var seconds = 0;
         var tempMinutes = minutes.toString().length > 1 ? minutes : `0${minutes}`;
         var tempSeconds = seconds.toString().length > 1 ? seconds : `0${seconds}`;
         $('#countdown').text(`${tempMinutes} : ${tempSeconds}`);
