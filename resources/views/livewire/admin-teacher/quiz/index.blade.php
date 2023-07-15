@@ -45,7 +45,7 @@
                                 Pilihan Ganda
                               @elseif($quiz->quiz_type == 'ES')
                                 Essay
-                              @elseif ($quiz->quiz_type == "TF")
+                              @elseif ($quiz->quiz_type == 'TF')
                                 Benar Salah
                               @endif
                             </td>
@@ -227,6 +227,27 @@
                                     </div>
                                   </div>
                                 </div>
+                                <div class="col-6">
+                                  <label for="flexRadioDefault" class="form-label">Tampilkan Score?</label>
+                                  <div class="d-flex">
+                                    <div class="form-check me-3">
+                                      <input wire:model="show_score" value="1"
+                                        class="form-check-input @error('show_score') is-invalid @enderror"
+                                        type="radio" name="show_score" id="flexRadioDefault1">
+                                      <label class="form-check-label" for="flexRadioDefault1">
+                                        Ya
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input wire:model="show_score" value="0"
+                                        class="form-check-input @error('show_score') is-invalid @enderror"
+                                        type="radio" name="show_score" id="flexRadioDefault2">
+                                      <label class="form-check-label" for="flexRadioDefault2">
+                                        Tidak
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -373,6 +394,27 @@
                                     </div>
                                   </div>
                                 </div>
+                                <div class="col-6">
+                                  <label for="flexRadioDefault" class="form-label">Tampilkan Score?</label>
+                                  <div class="d-flex">
+                                    <div class="form-check me-3">
+                                      <input wire:model="show_score" value="1"
+                                        class="form-check-input @error('show_score') is-invalid @enderror"
+                                        type="radio" name="show_score" id="flexRadioDefault1">
+                                      <label class="form-check-label" for="flexRadioDefault1">
+                                        Ya
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input wire:model="show_score" value="0"
+                                        class="form-check-input @error('show_score') is-invalid @enderror"
+                                        type="radio" name="show_score" id="flexRadioDefault2">
+                                      <label class="form-check-label" for="flexRadioDefault2">
+                                        Tidak
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -447,7 +489,23 @@
                                 </tr>
                                 <tr>
                                   <td><span> Status</span></td>
-                                  <td>: <span class="badge text-bg-info">Aktif</span></td>
+                                  <td>:
+                                    @if ($is_active)
+                                      <span class="badge text-bg-info">Aktif</span>
+                                    @else
+                                      <span class="badge text-bg-danger">Tidak</span>
+                                    @endif
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td><span> Tampilkan Score</span></td>
+                                  <td>:
+                                    @if ($show_score)
+                                      <span class="badge text-bg-info">Aktif</span>
+                                    @else
+                                      <span class="badge text-bg-danger">Tidak</span>
+                                    @endif
+                                  </td>
                                 </tr>
                               </tbody>
                             </table>

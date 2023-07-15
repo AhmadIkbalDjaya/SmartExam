@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class Index extends Component
 {
     public $password, $password_confirmation;
-    public $quiz_student_id, $quiz_id, $quiz_name, $quiz_code, $quiz_category, $quiz_type, $start_time, $end_time, $duration;
+    public $quiz_student_id, $quiz_id, $quiz_name, $quiz_code, $quiz_category, $quiz_type, $start_time, $end_time, $duration, $is_active, $show_score;
     public $question_count;
     public $score;
 
@@ -26,6 +26,8 @@ class Index extends Component
         $this->start_time = $quizStudent->quiz->start_time;
         $this->end_time = $quizStudent->quiz->end_time;
         $this->duration = $quizStudent->quiz->duration;
+        $this->is_active = $quizStudent->quiz->is_active;
+        $this->show_score = $quizStudent->quiz->show_score;
         $this->score = $quizStudent->score;
         $this->question_count = $quizStudent->quiz->question->count();
     }

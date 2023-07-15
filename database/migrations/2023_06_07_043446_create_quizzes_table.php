@@ -23,6 +23,7 @@ return new class extends Migration
             $table->dateTime('end_time');
             $table->integer('duration')->unsigned()->nullable();
             $table->boolean('is_active')->default(true);
+            $table->boolean('show_score')->default(true);
             $table->timestamps();
         });
     }
