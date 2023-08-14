@@ -48,8 +48,10 @@
                               <td class="border-1">
                                 @if ($quiz->quiz_type == 'MC')
                                   Pilihan Ganda
-                                @else
+                                @elseif ($quiz->quiz_type == 'ES')
                                   Essay
+                                @elseif ($quiz->quiz_type == 'TF')
+                                  Benar Salah
                                 @endif
                               </td>
                               <td class="border-1">
@@ -96,8 +98,10 @@
                                                     <span>:
                                                       @if ($quiz->quiz_type == 'MC')
                                                         Pilihan Ganda
-                                                      @else
+                                                      @elseif ($quiz->quiz_type == 'ES')
                                                         Essay
+                                                      @elseif ($quiz->quiz_type == 'TF')
+                                                        Benar Salah
                                                       @endif
                                                     </span>
                                                   </td>

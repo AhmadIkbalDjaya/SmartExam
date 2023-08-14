@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignIdFor(Quiz::class);
             $table->foreignIdFor(Student::class);
             $table->foreignIdFor(Question::class);
-            $table->enum('answer', ['A', 'B', 'C', 'D', 'E',]);
+            $table->enum('answer', ['A', 'B', 'C', 'D', 'E', 'TT', 'FF']);
             $table->boolean('is_correct')->default(false);
             $table->timestamps();
         });

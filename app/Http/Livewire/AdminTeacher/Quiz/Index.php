@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Index extends Component
 {
-    public $quiz_id, $quiz_name, $quiz_category, $quiz_type, $quiz_code, $start_time, $end_time, $duration, $is_active;
+    public $quiz_id, $quiz_name, $quiz_category, $quiz_type, $quiz_code, $start_time, $end_time, $duration, $is_active, $show_score;
     public $question_count;
     public $quiz_edit_id;
 
@@ -31,11 +31,12 @@ class Index extends Component
             "quiz_name" => "required|string",
             "quiz_code" => "required|unique:quizzes,quiz_code," . $this->quiz_edit_id . "",
             "quiz_category" => "required|in:SMP,SMA",
-            "quiz_type" => "required|in:MC,ES",
+            "quiz_type" => "required|in:MC,ES,TF",
             "start_time" => "required|date",
             "end_time" => "required|date|after:start_time",
             "duration" => "required|numeric",
             "is_active" => "required|boolean",
+            "show_score" => "required|boolean",
         ]);
     }
 
@@ -45,11 +46,12 @@ class Index extends Component
             "quiz_name" => "required|string",
             "quiz_code" => "required|unique:quizzes,quiz_code",
             "quiz_category" => "required|in:SMP,SMA",
-            "quiz_type" => "required|in:MC,ES",
+            "quiz_type" => "required|in:MC,ES,TF",
             "start_time" => "required|date",
             "end_time" => "required|date|after:start_time",
             "duration" => "required|numeric",
             "is_active" => "required|boolean",
+            "show_score" => "required|boolean",
         ]);
         Quiz::create($validated);
         session()->flash("success", "Quiz berhasil ditambahkan");
@@ -69,11 +71,12 @@ class Index extends Component
             "quiz_name" => "required|string",
             "quiz_code" => "required|unique:quizzes,quiz_code," . $this->quiz_edit_id . "",
             "quiz_category" => "required|in:SMP,SMA",
-            "quiz_type" => "required|in:MC,ES",
+            "quiz_type" => "required|in:MC,ES,TF",
             "start_time" => "required|date",
             "end_time" => "required|date|after:start_time",
             "duration" => "required|numeric",
             "is_active" => "required|boolean",
+            "show_score" => "required|boolean",
         ]);
         $quiz->update($validated);
         session()->flash("success", "Quiz berhasil diperbaharui");
@@ -100,6 +103,7 @@ class Index extends Component
         $this->end_time = "";
         $this->duration = "";
         $this->is_active = "";
+        $this->show_score = "";
         $this->question_count = "";
         $this->quiz_edit_id = "";
     }
@@ -115,6 +119,7 @@ class Index extends Component
         $this->end_time = $quiz->end_time;
         $this->duration = $quiz->duration;
         $this->is_active = $quiz->is_active;
+        $this->show_score = $quiz->show_score;
         $this->question_count = $quiz->question_count;
     }
 }

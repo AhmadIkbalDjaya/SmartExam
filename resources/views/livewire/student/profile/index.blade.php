@@ -104,14 +104,22 @@
                           <td>
                             @if ($quizStudent->quiz->quiz_type == 'MC')
                               Pilihan Ganda
-                            @else
+                            @elseif ($quizStudent->quiz->quiz_type == 'ES')
                               Essay
+                            @elseif ($quizStudent->quiz->quiz_type == 'TF')
+                              Benar Salah
                             @endif
                           </td>
-                          <td>{{ $quizStudent->score }}</td>
+                          <td>
+                            @if ($quizStudent->quiz->show_score)
+                              {{ $quizStudent->score }}
+                              {{-- @else --}}
+                            @endif
+                          </td>
                           <td>
                             <button style=" border: none;background: none; padding: 0">
-                              <span wire:click="setField({{ $quizStudent->id }})" class="badge text-bg-info" data-bs-toggle="modal" data-bs-target="#showModal">
+                              <span wire:click="setField({{ $quizStudent->id }})" class="badge text-bg-info"
+                                data-bs-toggle="modal" data-bs-target="#showModal">
                                 Informasi
                               </span>
                             </button>
@@ -191,7 +199,8 @@
     </div>
   </form>
   {{-- Show Modal --}}
-  <div wire:ignore.self class="modal fade" id="showModal" tabindex="-1" aria-labelledby="showModalLabel" aria-hidden="true">
+  <div wire:ignore.self class="modal fade" id="showModal" tabindex="-1" aria-labelledby="showModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -220,7 +229,7 @@
                       <td>Pilih Quiz</td>
                       <td>:</td>
                       <td>
-                        @if ($quiz_type == "MC")
+                        @if ($quiz_type == 'MC')
                           Pilihan Ganda
                         @else
                           Essay
@@ -251,11 +260,14 @@
                       <td>:</td>
                       <td>{{ $question_count }}</td>
                     </tr>
-                    <tr>
-                      <td>Nilai Ujian</td>
-                      <td>:</td>
-                      <td class="fw-bold">{{ $score }}</td>
-                    </tr>
+                    @if ($show_score)
+                      <tr>
+                        <td>Nilai Ujian</td>
+                        <td>:</td>
+                        <td class="fw-bold">{{ $score }}</td>
+                      </tr>
+                      {{-- @else --}}
+                    @endif
                   </tbody>
                 </table>
               </div>

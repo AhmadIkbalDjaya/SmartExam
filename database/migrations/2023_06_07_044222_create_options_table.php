@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('options', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Question::class);
-            $table->enum('option', ['A', 'B', 'C', 'D', 'E']);
+            $table->enum('option', ['A', 'B', 'C', 'D', 'E', 'TT', 'FF']);
             $table->longText('option_body');
             $table->boolean('is_correct');
             $table->timestamps();

@@ -55,8 +55,10 @@
                                 <td>
                                   @if ($quiz->quiz_type == 'MC')
                                     Pilihan Ganda
-                                  @else
+                                  @elseif ($quiz->quiz_type == 'ES')
                                     Essay
+                                  @elseif ($quiz->quiz_type == 'TF')
+                                    Benar Salah
                                   @endif
                                 </td>
                               </tr>
@@ -97,7 +99,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <a href="{{ route('admin.recap.quiz.index', ["quiz" => $quiz->id]) }}">
+                    <a href="{{ route('admin.recap.quiz.index', ['quiz' => $quiz->id]) }}">
                       <button type="button" class="btn btn-primary fs-6 print-button"><i
                           class="bi bi-arrow-left"></i></button>
                     </a>

@@ -37,9 +37,6 @@
                             name="question{{ $question->id }}Option{{ $option->id }}"
                             id="option{{ $option->id }}" />
                           <label class="form-check-label d-flex" for="option{{ $option->id }}">
-                            <p>
-                              {{ $option->option }}.
-                            </p>
                             <div>
                               {!! $option->option_body !!}
                             </div>
@@ -68,33 +65,18 @@
                   @endif
                   <button id="saveAnswer" wire:click="saveAnswer" type="submit" class="btn btn-primary d-none">Simpan
                     Jawaban</button>
+                  @if ($active_question == $questions->count())
+                    @if (count($this->selectedOptions) == $questions->count())
+                      <button wire:click="saveAnswer" type="submit" class="btn btn-primary">Simpan Jawaban</button>
+                    @else
+                      <div class="text-danger">
+                        Anda belum menjawab semua pertanyaan
+                      </div>
+                    @endif
+                  @endif
                 </div>
               </div>
             </div>
-            @if ($active_question == $questions->count())
-              {{-- <form wire:submit.prevent="saveAnswer" action=""> --}}
-              <div class="col-12 row p-2 justify-content-between">
-                <h6 class="col-12 text-center">upload jawaban</h6>
-                <div class="col-6">
-                  <div class="mb-3">
-                    <input wire:model='file' name="file" class="form-control @error('file') is-invalid @enderror"
-                      type="file" id="formFile">
-                    {{-- <sup class="text-danger">format: pdf*</sup> --}}
-                    @error('file')
-                      <div class="invalid-feedback">
-                        {{ $message }}
-                      </div>
-                    @enderror
-                  </div>
-                </div>
-                <div class="col-6 text-end">
-                  <button wire:click="saveAnswer" type="submit" class="btn btn-primary">
-                    Kumpul
-                  </button>
-                </div>
-              </div>
-              {{-- </form> --}}
-            @endif
           </div>
         </div>
         <div class="col-md-4">
@@ -104,7 +86,6 @@
               <div class="container">
                 <div class="row">
                   <div class="col-md-12 py-4">
-                    <p class="text-danger">Jawab pertanyaan pada kertas lalu scan dan kirim jawaban</p>
                     @foreach ($questions as $question)
                       <button wire:click='setQuestion({{ $loop->iteration }})' type="button"
                         class="btn p-0 mt-1 

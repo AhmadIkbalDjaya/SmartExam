@@ -22,6 +22,8 @@
       <livewire:student.quiz.quiz-work.mc-work :quiz="$quiz" />
     @elseif ($quiz->quiz_type == 'ES')
       <livewire:student.quiz.quiz-work.es-work :quiz="$quiz" />
+    @elseif ($quiz->quiz_type == "TF")
+      <livewire:student.quiz.quiz-work.tf-work :quiz="$quiz" />
     @endif
   </div>
 @endsection
